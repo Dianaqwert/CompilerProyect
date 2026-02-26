@@ -1,0 +1,9 @@
+self: En Python, self significa "esta misma ventana".
+Cuando escribes self.codigotextoplano, le estás diciendo al programa:
+"Busca el cuadro de texto que está dentro de esta ventana".
+
+triggered.connect(...): Es como un cable invisible. Conecta el evento de "hacer clic" en el menú con la "acción" que escribimos abajo. Si no haces esta conexión, los botones no harán nada al presionarlos.
+
+QFileDialog: Es una herramienta ya lista de la librería que genera automáticamente la ventana de "Abrir" o "Guardar como" de Windows. No tienes que programarla desde cero.
+
+with open(...): Es la instrucción estándar de Python para archivos. El parámetro 'r' significa Read (Leer) y el 'w' significa Write (Escribir). Usamos utf-8 para asegurar que reconozca acentos y caracteres especiales de tu código.
