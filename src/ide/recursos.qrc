@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="ICONO">
+    <file>recursos/close_file.png</file>
+    <file>recursos/icono_close.png</file>
+    <file>recursos/icono_newfile.png</file>
+    <file>recursos/icono_Open.png</file>
+    <file>recursos/icono_saveAs.png</file>
+    <file>recursos/icono_savefile.png</file>
+  </qresource>
+</RCC>
