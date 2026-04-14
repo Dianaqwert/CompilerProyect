@@ -253,10 +253,12 @@ class MiIDE(QtWidgets.QMainWindow):
             if tok.type in ['ERR_DECIMAL', 'ERROR_SIMBOLO']:
                 errores_lista.append((tok.lineno, col, tok.value))
             else:
-                # 2. Traductor a "Nombres Bonitos" (Igual al IDE-UAA)
+                # 2. Traductor a "Nombres"
                 tipo_bonito = tok.type
-                if tok.type in ['INT', 'REAL']:
+                if tok.type in ['INT']:
                     tipo_bonito = "Número"
+                elif tok.type in ['REAL']:
+                    tipo_bonito="Flotante"
                 elif tok.type in ['IF', 'ELSE', 'END', 'MAIN', 'DO', 'WHILE', 'INT_DECL', 'FLOAT_DECL', 'CIN', 'COUT',
                                   'SWITCH', 'CASE']:
                     tipo_bonito = "Reservada"

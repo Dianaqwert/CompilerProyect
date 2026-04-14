@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>915</width>
+    <height>649</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QSplitter" name="splitter_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <widget class="QSplitter" name="splitter">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="handleWidth">
+        <number>10</number>
+       </property>
+       <widget class="QPlainTextEdit" name="codigotextoplano">
+        <property name="font">
+         <font>
+          <family>Cascadia Code SemiBold</family>
+          <pointsize>12</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="lineWrapMode">
+         <enum>QPlainTextEdit::NoWrap</enum>
+        </property>
+        <property name="backgroundVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QTabWidget" name="LCHSS">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="lexico">
+         <attribute name="title">
+          <string>Lexico</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QTableWidget" name="tablaLexico">
+            <column>
+             <property name="text">
+              <string>Línea</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Columna</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Tipo de Token</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Lexema</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="codigo_interm_2">
+         <attribute name="title">
+          <string>Codigo intermedio</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="hash_table">
+         <attribute name="title">
+          <string>Hash Table</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="semantico">
+         <attribute name="title">
+          <string>Semantico</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="Sintactico">
+         <attribute name="title">
+          <string>Sintactico</string>
+         </attribute>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QTabWidget" name="ResultadosErrores">
+       <property name="tabPosition">
+        <enum>QTabWidget::North</enum>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="ErroresLexicos">
+        <attribute name="title">
+         <string>Erroes Lexicos</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QTableWidget" name="tablaErroresLexicos">
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectItems</enum>
+           </property>
+           <column>
+            <property name="text">
+             <string>Linea</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Columna</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Lexema</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="tab_5">
+        <attribute name="title">
+         <string>Errores Sintacticos</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="widget">
+        <property name="accessibleName">
+         <string>jnjk</string>
+        </property>
+        <property name="accessibleDescription">
+         <string>nbmbm</string>
+        </property>
+        <attribute name="title">
+         <string>Errores Semanticos</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="tab_6">
+        <attribute name="title">
+         <string>Resultados</string>
+        </attribute>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>915</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionGuardar"/>
+    <addaction name="actionSalir"/>
+    <addaction name="actionbvn"/>
+    <addaction name="actionGuardar_como"/>
+    <addaction name="actionCerrar_archivo_self"/>
+   </widget>
+   <widget class="QMenu" name="menuBuild_and_debug">
+    <property name="title">
+     <string>Build and debug</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuLexico">
+    <property name="title">
+     <string>Lexico</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuSintactico">
+    <property name="title">
+     <string>Sintactico</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuCompilar">
+    <property name="title">
+     <string>Compilar</string>
+    </property>
+    <addaction name="actionAnalisis_lexico"/>
+    <addaction name="actionAnalisis_sintactico"/>
+    <addaction name="actionAnalisis_Semantico"/>
+   </widget>
+   <widget class="QMenu" name="menuAbrir">
+    <property name="title">
+     <string>Abrir</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuBuild_and_debug"/>
+   <addaction name="menuLexico"/>
+   <addaction name="menuSintactico"/>
+   <addaction name="menuCompilar"/>
+   <addaction name="menuAbrir"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionbvn"/>
+   <addaction name="actionGuardar"/>
+   <addaction name="actionGuardar_como"/>
+   <addaction name="actionCerrar_archivo_self"/>
+  </widget>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/ICONO/recursos/icono_Open.png</normaloff>:/ICONO/recursos/icono_Open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Abrir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionGuardar">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/ICONO/recursos/icono_savefile.png</normaloff>:/ICONO/recursos/icono_savefile.png</iconset>
+   </property>
+   <property name="text">
+    <string>Guardar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionbvn">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/ICONO/recursos/icono_newfile.png</normaloff>:/ICONO/recursos/icono_newfile.png</iconset>
+   </property>
+   <property name="text">
+    <string>Nuevo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionGuardar_como">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/ICONO/recursos/icono_saveAs.png</normaloff>:/ICONO/recursos/icono_saveAs.png</iconset>
+   </property>
+   <property name="text">
+    <string>Guardar como</string>
+   </property>
+  </action>
+  <action name="actionSalir">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/ICONO/recursos/icono_close.png</normaloff>:/ICONO/recursos/icono_close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Salir IDE</string>
+   </property>
+   <property name="toolTip">
+    <string>Cerrar IDE</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionAnalisis_lexico">
+   <property name="text">
+    <string>Análisis Léxico</string>
+   </property>
+  </action>
+  <action name="actionAnalisis_sintactico">
+   <property name="text">
+    <string>Analisis sintactico</string>
+   </property>
+  </action>
+  <action name="actionAnalisis_Semantico">
+   <property name="text">
+    <string>Analisis Semantico</string>
+   </property>
+  </action>
+  <action name="actionCerrar_archivo">
+   <property name="text">
+    <string>Cerrar archivo</string>
+   </property>
+  </action>
+  <action name="actionCerrar_archivo_self">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/ICONO/recursos/close_file.png</normaloff>:/ICONO/recursos/close_file.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cerrar archivo</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="recursos.qrc"/>
+ </resources>
+ <connections/>
+</ui>
