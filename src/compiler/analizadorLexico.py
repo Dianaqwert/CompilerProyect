@@ -40,7 +40,32 @@ def t_COMMENT_MULTI(t):
     pass
 
 def t_ERR_DECIMAL(t):
-    r'\d+\.([a-zA-Z_]+|(?!\d))' # Captura el error "32.algo" o "32."
+    r'\d+\.(?!\d)'# Captura el error "32.algo" o "32."
+    return t
+
+##SALTOS EN LINEA Y OPERADORES == Y ++
+def t_INC(t):
+    r'\+\s*\+'
+    t.lexer.lineno += t.value.count('\n') # Si hubo un salto de línea en medio, lo contamos
+    t.value = "++"                        # Forzamos a que el texto limpio sea "++"
+    return t
+
+def t_DEC(t):
+    r'-\s*-'
+    t.lexer.lineno += t.value.count('\n')
+    t.value = "--"
+    return t
+
+def t_EQ(t):
+    r'=\s*='
+    t.lexer.lineno += t.value.count('\n')
+    t.value = "=="
+    return t
+
+def t_NE(t):
+    r'!\s*='
+    t.lexer.lineno += t.value.count('\n')
+    t.value = "!="
     return t
 
 # 1. PRIMERO LA REGLA MÁS ESPECÍFICA (Números Reales/Decimales)
