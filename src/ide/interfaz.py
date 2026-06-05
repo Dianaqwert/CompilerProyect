@@ -4,6 +4,7 @@ from PyQt6 import QtWidgets, uic, QtCore, QtGui
 from PyQt6.QtWidgets import QHeaderView
 #lexico
 from compiler.analizadorLexico import lexer,find_column
+from compiler.analizadorSintactico import ejecutar_parser
 from compiler.highlighter import LexicalHighlighter
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -91,14 +92,13 @@ class MiIDE(QtWidgets.QMainWindow):
 
     def __init__(self):
         super(MiIDE, self).__init__()
-
-
         ###############################3
         #           VISTA
         ###############################
         self.archivo_actual = None
         self.contenido_original = ""  # Nueva variable para detectar cambios
         self.actionAnalisis_lexico: QtGui.QAction
+        self.actionAnalisis_sintactico: QtGui.QAction
         self.tablaLexico: QtWidgets.QTableWidget
         self.tablaErroresLexicos: QtWidgets.QTableWidget
         #ruta_ui = os.path.join(os.path.dirname(__file__), 'untitled.ui')
@@ -106,10 +106,8 @@ class MiIDE(QtWidgets.QMainWindow):
         uic.loadUi(ruta_ui, self)
 
         # ==========================================
-        # 2. 🎨 CARGA INFALIBLE DE ÍCONOS
+        # 2. CARGA DE ÍCONOS
         # ==========================================
-        # Ahora sí podemos ponerles íconos porque los botones ya existen
-
         icono_abrir = QtGui.QIcon(resource_path('recursos/icono_Open.png'))
         icono_guardar = QtGui.QIcon(resource_path('recursos/icono_savefile.png'))
         icono_guardar_como = QtGui.QIcon(resource_path('recursos/icono_saveAs.png'))
@@ -133,6 +131,7 @@ class MiIDE(QtWidgets.QMainWindow):
         self.editor_nuevo.setFont(fuente)
         ##ANALIZADOR LEXICO
         self.actionAnalisis_lexico.triggered.connect(self.ejecutar_analisis_lexico)
+        self.actionAnalisis_sintactico.triggered.connect(self.ejecutar_analisis_sintactico)
         self.highlighter = LexicalHighlighter(self.editor_nuevo.document())
 
         # SOLUCIÓN DE LOS ÍNDICES
@@ -232,7 +231,7 @@ class MiIDE(QtWidgets.QMainWindow):
         self.setWindowTitle("Diana IDE - Sin archivo")
         self.statusbar.showMessage("Archivo cerrado correctamente", 3000)
 
-    ## ANALIZADOR LEXICO :
+    #################################################### ANALIZADOR LEXICO ################################################
     def ejecutar_analisis_lexico(self):
         print("Botón presionado: Ejecutando análisis...")  # Mensaje para confirmar en consola
         codigo = self.codigotextoplano.toPlainText()
@@ -280,8 +279,9 @@ class MiIDE(QtWidgets.QMainWindow):
         # Llamamos a la función que pinta las tablas
         self.mostrar_resultados_lexicos(tokens_lista, errores_lista)
 
+
     def mostrar_resultados_lexicos(self, tokens, errores):
-        # --- BLINDAJE DE LA TABLA LÉXICA ---
+        # ---  TABLA LÉXICA ---
         # Obligamos a Qt a crear 4 columnas, sin importar lo que diga el Designer
         self.tablaLexico.setColumnCount(4)
         self.tablaLexico.setHorizontalHeaderLabels(["Línea", "Columna", "Tipo de Token", "Lexema"])
@@ -304,8 +304,8 @@ class MiIDE(QtWidgets.QMainWindow):
             self.tablaLexico.setItem(i, 2, QtWidgets.QTableWidgetItem(str(tipo)))
             self.tablaLexico.setItem(i, 3, QtWidgets.QTableWidgetItem(str(lex)))
 
-        # --- BLINDAJE DE LA TABLA DE ERRORES ---
-        # Obligamos a Qt a crear 3 columnas para tu tabla inferior
+        # --- TABLA DE ERRORES ---
+        # Obligamos a Qt a crear 3 columnas
         self.tablaErroresLexicos.setColumnCount(3)
         self.tablaErroresLexicos.setHorizontalHeaderLabels(["Línea", "Columna", "Lexema"])
 
@@ -325,6 +325,136 @@ class MiIDE(QtWidgets.QMainWindow):
             self.tablaErroresLexicos.setItem(i, 1, QtWidgets.QTableWidgetItem(str(col)))
             self.tablaErroresLexicos.setItem(i, 2, QtWidgets.QTableWidgetItem(str(lex)))
 
+    #ANALIZADOR SINTACTICO
+    def ejecutar_analisis_sintactico(self):
+        print("Botón presionado: Ejecutando análisis sintáctico...")
+        codigo = self.codigotextoplano.toPlainText()
+
+        # =========================================================
+        # REGLA ESTRICTA: ESCANEO LÉXICO PREVIO
+        # =========================================================
+        lexer.input(codigo)
+        lexer.lineno = 1
+        hay_errores_lexicos = False
+        while True:
+            tok = lexer.token()
+            if not tok: break
+            if tok.type in ['ERR_DECIMAL', 'ERROR_SIMBOLO']:
+                hay_errores_lexicos = True
+                break
+
+        if hay_errores_lexicos:
+            QtWidgets.QMessageBox.critical(
+                self,
+                "Análisis Sintáctico Detenido",
+                "Se encontraron errores léxicos.\nPor favor, corre el Analizador Léxico para verlos y corrígelos antes de analizar la sintaxis."
+            )
+            self.ResultadosErrores.setCurrentIndex(0)  # Salta automáticamente a errores léxicos
+            return
+
+        lexer.lineno = 1
+        # =========================================================
+        # EJECUCIÓN SINTÁCTICA
+        # =========================================================
+        arbol, errores_sint = ejecutar_parser(codigo)
+
+        # ---------------------------------------------------------
+        # 1. LLENAR LA TABLA DE ERRORES SINTÁCTICOS DEL DESIGNER
+        # ---------------------------------------------------------
+        self.tablaErroresSintacticos.setColumnCount(3)
+        self.tablaErroresSintacticos.setHorizontalHeaderLabels(["Línea", "Columna", "Descripción del Error"])
+        self.tablaErroresSintacticos.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+
+        header_errores = self.tablaErroresSintacticos.horizontalHeader()
+        header_errores.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
+        header_errores.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+        header_errores.setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
+
+        # Hoja de estilos modo oscuro integrado (Sin bloques de colores sólidos invasivos)
+        self.tablaErroresSintacticos.setStyleSheet("""
+            QTableWidget { background-color: #1E1E1E; color: #E5E5E5; font-size: 13px; gridline-color: #323232; }
+            QHeaderView::section { background-color: #2D2D2D; color: #FF6B6B; font-weight: bold; border: 1px solid #3F444D; }
+        """)
+
+        # Limpiamos filas viejas de forma segura sin borrar el componente
+        self.tablaErroresSintacticos.setRowCount(0)
+        self.tablaErroresSintacticos.setRowCount(len(errores_sint))
+
+        # Desempaquetamos la tupla y casteamos a str() obligatoriamente
+        for i, item_error in enumerate(errores_sint):
+            if isinstance(item_error, tuple) and len(item_error) == 3:
+                lin, col, msg = item_error
+                self.tablaErroresSintacticos.setItem(i, 0, QtWidgets.QTableWidgetItem(str(lin)))
+                self.tablaErroresSintacticos.setItem(i, 1, QtWidgets.QTableWidgetItem(str(col)))
+                self.tablaErroresSintacticos.setItem(i, 2, QtWidgets.QTableWidgetItem(str(msg)))
+            else:
+                # Caso de respaldo por si el error viene en formato de cadena simple
+                self.tablaErroresSintacticos.setItem(i, 0, QtWidgets.QTableWidgetItem("-"))
+                self.tablaErroresSintacticos.setItem(i, 1, QtWidgets.QTableWidgetItem("-"))
+                self.tablaErroresSintacticos.setItem(i, 2, QtWidgets.QTableWidgetItem(str(item_error)))
+
+        # Si hay errores sintácticos, saltamos a la pestaña inferior y detenemos el proceso del árbol
+        if errores_sint:
+            self.ResultadosErrores.setCurrentIndex(1)  # Enfoca la pestaña de Errores Sintácticos
+            QtWidgets.QMessageBox.warning(self, "Sintaxis",
+                                          "Se detectaron errores. El árbol mostrará los bloques no válidos.")
+
+
+        # ---------------------------------------------------------
+        # 2. DIBUJAR ÁRBOL SINTÁCTICO EN SU PESTAÑA SUPERIOR ("Sintactico")
+        # ---------------------------------------------------------
+        if not self.Sintactico.layout():
+            self.Sintactico.setLayout(QtWidgets.QVBoxLayout())
+
+        while self.Sintactico.layout().count():
+            child = self.Sintactico.layout().takeAt(0)
+            if child.widget(): child.widget().deleteLater()
+
+        if arbol:
+            tree_widget = QtWidgets.QTreeWidget()
+            tree_widget.setHeaderLabel("Estructura Gramatical (AST)")
+            tree_widget.setStyleSheet("""
+                QTreeWidget { background-color: #21252B; color: #E5E5E5; font-size: 14px; }
+                QHeaderView::section { background-color: #0D47A1; color: white; font-weight: bold; }
+            """)
+
+            def dibujar_nodo(parent_item, ast_node):
+                if ast_node is None: return
+
+                # Protección por si algún nodo no es un objeto TreeNode
+                if not hasattr(ast_node, 'tipo_nodo'):
+                    QtWidgets.QTreeWidgetItem(parent_item, [f"[Token] -> {str(ast_node)}"])
+                    return
+
+                if ast_node.valor:
+                    texto = f"{ast_node.tipo_nodo} -> {ast_node.valor}"
+                else:
+                    texto = f"{ast_node.tipo_nodo}"
+
+                item = QtWidgets.QTreeWidgetItem(parent_item, [texto])
+
+                #Si el nodo representa un error o estructura inválida, lo pintamos de naranja
+                if "invalida" in ast_node.tipo_nodo or "error" in ast_node.tipo_nodo:
+                    # Creamos un pincel con color naranja brillante para modo oscuro
+                    color_naranja = QtGui.QColor("#FF8C00")
+                    item.setForeground(0, QtGui.QBrush(color_naranja))
+
+                    # Opcional: Le aplicamos negrita para que resalte aún más en la interfaz
+                    fuente_nodo = item.font(0)
+                    fuente_nodo.setBold(True)
+                    item.setFont(0, fuente_nodo)
+
+                for hijo in ast_node.hijos:
+                    dibujar_nodo(item, hijo)
+
+            dibujar_nodo(tree_widget, arbol)
+            tree_widget.expandAll()  # Se despliega de forma automática
+
+            self.Sintactico.layout().addWidget(tree_widget)
+
+            # Cambiamos el foco visual a la pestaña del Árbol Sintáctico
+            idx_sintactico = self.LCHSS.indexOf(self.Sintactico)
+            self.LCHSS.setCurrentIndex(idx_sintactico)
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = MiIDE()
