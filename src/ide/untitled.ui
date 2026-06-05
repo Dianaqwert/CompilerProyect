@@ -110,7 +110,7 @@
         <enum>QTabWidget::North</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="ErroresLexicos">
         <attribute name="title">
@@ -141,10 +141,15 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tab_5">
+       <widget class="QWidget" name="ErroresSintacticos">
         <attribute name="title">
          <string>Errores Sintacticos</string>
         </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QTableWidget" name="tablaErroresSintacticos"/>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="widget">
         <property name="accessibleName">

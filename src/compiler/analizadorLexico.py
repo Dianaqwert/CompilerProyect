@@ -2,19 +2,35 @@ import ply.lex as lex
 
 # Palabras reservadas (Color 4)
 reserved = {
-    'if': 'IF', 'else': 'ELSE', 'end': 'END', 'do': 'DO', 'while': 'WHILE',
-    'switch': 'SWITCH', 'case': 'CASE', 'int': 'INT_DECL', 'float': 'FLOAT_DECL',
-    'main': 'MAIN', 'cin': 'CIN', 'cout': 'COUT'
+    'if': 'IF',
+    'else': 'ELSE',
+    'end': 'END',
+    'do': 'DO',
+    'while': 'WHILE',
+    'switch': 'SWITCH',
+    'case': 'CASE',
+    'int': 'INT_DECL',
+    'float': 'FLOAT_DECL',
+    'main': 'MAIN',
+    'cin': 'CIN',
+    'cout': 'COUT',
+    'then':'THEN',
+    'until':'UNTIL',
+    'bool':'BOOL_DECL'
 }
 
 tokens = [
     'ID', 'INT', 'REAL', 'PLUS', 'MINUS', 'MULT', 'DIV', 'MOD', 'POW',
     'INC', 'DEC', 'LT', 'LTE', 'GT', 'GTE', 'NE', 'EQ', 'AND', 'OR', 'NOT',
     'LBRACE', 'RBRACE', 'LPAREN', 'RPAREN', 'COMMA', 'SEMI', 'STRING',
-    'CHAR', 'ASSIGN', 'ERR_DECIMAL'
+    'CHAR', 'ASSIGN', 'ERR_DECIMAL',
+    'SHIFTL', 'SHIFTR'
 ] + list(reserved.values())
 
 # Operadores (Color 5 y 6)
+
+t_SHIFTL = r'<<'
+t_SHIFTR = r'>>'
 t_INC, t_DEC, t_EQ, t_NE = r'\+\+', r'--', r'==', r'!='
 t_LTE, t_GTE = r'<=', r'>='
 t_AND, t_OR = r'&&', r'\|\|'
@@ -98,7 +114,6 @@ def t_error(t):
     t.value = t.value[0]
     t.lexer.skip(1)
     return t
-
 
 lexer = lex.lex()
 
