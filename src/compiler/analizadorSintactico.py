@@ -304,8 +304,24 @@ def p_error(p):
         errores_sintacticos.append(("-", "-", "Error: Estructura sintáctica incompleta al final del código."))
 
 
-parser = yacc.yacc()
+# Clase auxiliar para silenciar por completo los reportes físicos de PLY
+class NullLogger(object):
+    def critical(self, msg, *args, **kwargs): pass
+    def error(self, msg, *args, **kwargs): pass
+    def warning(self, msg, *args, **kwargs): pass
+    def info(self, msg, *args, **kwargs): pass
+    def debug(self, msg, *args, **kwargs): pass
 
+# Instanciamos nuestro logger vacío de respaldo
+log_silencioso = NullLogger()
+
+# Inicializamos el generador de Yacc bloqueando la escritura en disco
+parser = yacc.yacc(
+    debug=False,            # Apaga la generación del archivo parser.out
+    write_tables=False,     # Evita que intente sobreescribir parsetab.py en el .exe
+    debuglog=log_silencioso, # Desvía los logs de depuración al vacío
+    errorlog=log_silencioso  # Desvía las advertencias para que no rompan el --noconsole
+)
 
 def ejecutar_parser(codigo):
     global errores_sintacticos, codigo_fuente_actual
