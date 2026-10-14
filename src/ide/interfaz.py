@@ -5,6 +5,7 @@ from PyQt6.QtWidgets import QHeaderView
 #lexico
 from compiler.analizadorLexico import lexer,find_column
 from compiler.analizadorSintactico import ejecutar_parser
+from compiler.analizadorSemantico import AnalizadorSemantico
 from compiler.highlighter import LexicalHighlighter
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +39,7 @@ class EditorConLineas(QtWidgets.QPlainTextEdit):
         self.updateRequest.connect(self.actualizar_area_numeros)
         self.cursorPositionChanged.connect(self.resaltar_linea_actual)
         self.actualizar_ancho_area_numeros(0)
+        #
 
     def area_numeros_ancho(self):
         digitos = len(str(max(1, self.blockCount())))
@@ -97,11 +99,15 @@ class MiIDE(QtWidgets.QMainWindow):
         ###############################
         self.archivo_actual = None
         self.contenido_original = ""  # Nueva variable para detectar cambios
+
+        # Declaraciones de tipado (Opcional, pero buenas prácticas)
         self.actionAnalisis_lexico: QtGui.QAction
         self.actionAnalisis_sintactico: QtGui.QAction
         self.tablaLexico: QtWidgets.QTableWidget
         self.tablaErroresLexicos: QtWidgets.QTableWidget
-        #ruta_ui = os.path.join(os.path.dirname(__file__), 'untitled.ui')
+        self.actionAnalisis_Semantico: QtGui.QAction
+
+        # 1. PRIMERO CARGAMOS LA INTERFAZ (Aquí nacen los botones)
         ruta_ui = resource_path('untitled.ui')
         uic.loadUi(ruta_ui, self)
 
@@ -129,33 +135,17 @@ class MiIDE(QtWidgets.QMainWindow):
         fuente = QtGui.QFont("Cascadia Code", 12)
         fuente.setWeight(600)
         self.editor_nuevo.setFont(fuente)
-        ##ANALIZADOR LEXICO
-        self.actionAnalisis_lexico.triggered.connect(self.ejecutar_analisis_lexico)
-        self.actionAnalisis_sintactico.triggered.connect(self.ejecutar_analisis_sintactico)
         self.highlighter = LexicalHighlighter(self.editor_nuevo.document())
 
-        # SOLUCIÓN DE LOS ÍNDICES
-        if hasattr(self, 'splitter'):
-            indice_real = self.splitter.indexOf(self.codigotextoplano)
-
-            # 2. Reemplazamos exactamente en esa posición
-            self.splitter.replaceWidget(indice_real, self.editor_nuevo)
-            self.codigotextoplano.deleteLater()
-            self.codigotextoplano = self.editor_nuevo
-
-            # 3. Ajustamos el estiramiento usando el MISMO índice
-            self.splitter.setStretchFactor(indice_real, 4)
-            self.splitter.setStretchFactor(0, 1)
-
-        # Configurar el movimiento vertical (Subir/Bajar errores)
-        if hasattr(self, 'splitter_2'):
-            # Según tu Inspector:
-            # El índice 0 es 'ResultadosErrores' y el 1 es el 'splitter' (donde está el código)
-            self.splitter_2.setStretchFactor(1, 4)  # 80% para el editor
-            self.splitter_2.setStretchFactor(0, 1)  # 20% para errores
-
-
-        # --- CONEXIONES ---
+        # ==========================================
+        # 3. CONEXIONES DE LOS BOTONES AL CÓDIGO
+        # ==========================================
+        # Fase 1 y 2: Léxico y Sintáctico
+        self.actionAnalisis_lexico.triggered.connect(self.ejecutar_analisis_lexico)
+        self.actionAnalisis_sintactico.triggered.connect(self.ejecutar_analisis_sintactico)
+        # Fase 3: Semántico
+        self.actionAnalisis_Semantico.triggered.connect(self.ejecutar_analisis_semantico)
+        # Archivos
         self.actionOpen.triggered.connect(self.abrir_archivo)
         self.actionGuardar.triggered.connect(self.guardar_archivo)
         self.actionGuardar_como.triggered.connect(self.guardar_como_archivo)
@@ -163,8 +153,24 @@ class MiIDE(QtWidgets.QMainWindow):
         self.actionSalir.triggered.connect(self.close)
         self.actionCerrar_archivo_self.triggered.connect(self.cerrar_archivo)
 
+        # SOLUCIÓN DE LOS ÍNDICES PARA EL EDITOR
+        if hasattr(self, 'splitter'):
+            indice_real = self.splitter.indexOf(self.codigotextoplano)
+            self.splitter.replaceWidget(indice_real, self.editor_nuevo)
+            self.codigotextoplano.deleteLater()
+            self.codigotextoplano = self.editor_nuevo
+            self.splitter.setStretchFactor(indice_real, 4)
+            self.splitter.setStretchFactor(0, 1)
+
+        # Configurar el movimiento vertical (Subir/Bajar errores)
+        if hasattr(self, 'splitter_2'):
+            self.splitter_2.setStretchFactor(1, 4)  # 80% para el editor
+            self.splitter_2.setStretchFactor(0, 1)  # 20% para errores
+
+        # Estadísticas en tiempo real
         self.codigotextoplano.textChanged.connect(self.actualizar_estadisticas)
         self.codigotextoplano.cursorPositionChanged.connect(self.actualizar_estadisticas)
+
 
     ##INTERFAZ :
     def actualizar_estadisticas(self):
@@ -279,7 +285,6 @@ class MiIDE(QtWidgets.QMainWindow):
         # Llamamos a la función que pinta las tablas
         self.mostrar_resultados_lexicos(tokens_lista, errores_lista)
 
-
     def mostrar_resultados_lexicos(self, tokens, errores):
         # ---  TABLA LÉXICA ---
         # Obligamos a Qt a crear 4 columnas, sin importar lo que diga el Designer
@@ -325,7 +330,7 @@ class MiIDE(QtWidgets.QMainWindow):
             self.tablaErroresLexicos.setItem(i, 1, QtWidgets.QTableWidgetItem(str(col)))
             self.tablaErroresLexicos.setItem(i, 2, QtWidgets.QTableWidgetItem(str(lex)))
 
-    #ANALIZADOR SINTACTICO
+    ################################################### ANALIZADOR SINTACTICO #################################################
     def ejecutar_analisis_sintactico(self):
         print("Botón presionado: Ejecutando análisis sintáctico...")
         codigo = self.codigotextoplano.toPlainText()
@@ -455,6 +460,166 @@ class MiIDE(QtWidgets.QMainWindow):
             # Cambiamos el foco visual a la pestaña del Árbol Sintáctico
             idx_sintactico = self.LCHSS.indexOf(self.Sintactico)
             self.LCHSS.setCurrentIndex(idx_sintactico)
+
+    #################################################### ANALIZADOR SEMANTICO ################################################
+    def ejecutar_analisis_semantico(self):
+        print("Botón presionado: Ejecutando análisis semántico...")
+        codigo = self.codigotextoplano.toPlainText()
+
+        # ---------------------------------------------------------
+        # PASO 1: REQUISITO PREVIO (ÁRBOL SINTÁCTICO)
+        # El análisis semántico no crea un árbol de cero; utiliza el
+        # AST generado por el analizador sintáctico como base.
+        # ---------------------------------------------------------
+        arbol, errores_sint = ejecutar_parser(codigo)
+
+        # Si el código tiene errores sintácticos, la semántica no puede proceder de forma segura.
+        if errores_sint:
+            QtWidgets.QMessageBox.warning(
+                self,
+                "Análisis Semántico Detenido",
+                "Corrige los errores sintácticos antes de realizar el análisis semántico."
+            )
+            self.ResultadosErrores.setCurrentIndex(1)  # Salta a la pestaña de errores sintácticos
+            return
+
+        if not arbol:
+            return
+
+        # ---------------------------------------------------------
+        # PASO 2: EJECUCIÓN DEL RECORRIDO SEMÁNTICO
+        # Aquí se aplican las reglas semánticas al AST para calcular
+        # tipos, valores y llenar la tabla de símbolos internamente.
+        # ---------------------------------------------------------
+        analizador_semantico = AnalizadorSemantico()
+        tabla_simbolos_generada, errores_sem = analizador_semantico.analizar(arbol)
+
+        # ---------------------------------------------------------
+        # PASO 3: LLENAR LA TABLA DE ERRORES SEMÁNTICOS
+        # Muestra variables no declaradas o incompatibilidad de tipos.
+        # ---------------------------------------------------------
+        # ---------------------------------------------------------
+        # PASO 3: LLENAR LA TABLA DE ERRORES SEMÁNTICOS
+        # ---------------------------------------------------------
+        try:
+            self.tablaErroresSemanticos.setColumnCount(3)
+            self.tablaErroresSemanticos.setHorizontalHeaderLabels(["Línea", "Columna", "Descripción del Error"])
+            self.tablaErroresSemanticos.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+
+            header_errores = self.tablaErroresSemanticos.horizontalHeader()
+            header_errores.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
+            header_errores.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+            header_errores.setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
+
+            self.tablaErroresSemanticos.setRowCount(0)
+            self.tablaErroresSemanticos.setRowCount(len(errores_sem))
+
+            # Desempaquetamos la tupla (linea, columna, mensaje)
+            for i, error_item in enumerate(errores_sem):
+                if isinstance(error_item, tuple) and len(error_item) == 3:
+                    lin, col, msg = error_item
+                    self.tablaErroresSemanticos.setItem(i, 0, QtWidgets.QTableWidgetItem(str(lin)))
+                    self.tablaErroresSemanticos.setItem(i, 1, QtWidgets.QTableWidgetItem(str(col)))
+                    self.tablaErroresSemanticos.setItem(i, 2, QtWidgets.QTableWidgetItem(str(msg)))
+                else:
+                    self.tablaErroresSemanticos.setItem(i, 0, QtWidgets.QTableWidgetItem("-"))
+                    self.tablaErroresSemanticos.setItem(i, 1, QtWidgets.QTableWidgetItem("-"))
+                    self.tablaErroresSemanticos.setItem(i, 2, QtWidgets.QTableWidgetItem(str(error_item)))
+
+            if errores_sem:
+                self.ResultadosErrores.setCurrentIndex(2)
+
+        except AttributeError:
+            print("\n❌ ERROR DE INTERFAZ: Python no encuentra 'tablaErroresSemanticos'")
+        # ---------------------------------------------------------
+        # PASO 4: LLENAR LA TABLA DE SÍMBOLOS (Pestaña "Hash Table")
+        # Visualiza el diccionario/hash que contiene las variables declaradas y su tipo.
+        # ---------------------------------------------------------
+        if hasattr(self, 'tablaSimbolos'):
+            self.tablaSimbolos.setColumnCount(2)
+            self.tablaSimbolos.setHorizontalHeaderLabels(["Nombre del Identificador", "Tipo de Dato"])
+            self.tablaSimbolos.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
+            self.tablaSimbolos.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+            self.tablaSimbolos.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+
+            self.tablaSimbolos.setRowCount(0) # Limpiar tabla anterior
+            # Llenamos la interfaz con los datos del diccionario de la clase TablaSimbolos
+            self.tablaSimbolos.setRowCount(len(tabla_simbolos_generada.simbolos))
+
+            for i, (nombre, info) in enumerate(tabla_simbolos_generada.simbolos.items()):
+                self.tablaSimbolos.setItem(i, 0, QtWidgets.QTableWidgetItem(str(nombre)))
+                self.tablaSimbolos.setItem(i, 1, QtWidgets.QTableWidgetItem(str(info['tipo'])))
+
+        # ---------------------------------------------------------
+        # PASO 5: DIBUJAR ÁRBOL SINTÁCTICO ANOTADO (Pestaña "Semantico")
+        # Construye visualmente el AST mostrando los atributos heredados y sintetizados.
+        # ---------------------------------------------------------
+        # pestaña "Semantico" de tu diseño
+        pestaña_arbol = self.semantico
+
+        # Limpiamos si había un árbol viejo dibujado
+        if not pestaña_arbol.layout():
+            pestaña_arbol.setLayout(QtWidgets.QVBoxLayout())
+        while pestaña_arbol.layout().count():
+            child = pestaña_arbol.layout().takeAt(0)
+            if child.widget(): child.widget().deleteLater()
+
+        # Creamos el componente visual del árbol
+        tree_widget = QtWidgets.QTreeWidget()
+        tree_widget.setHeaderLabel("Árbol Sintáctico Anotado (AST + Semántica)")
+        tree_widget.setStyleSheet("""
+            QTreeWidget { background-color: #21252B; color: #E5E5E5; font-size: 14px; }
+            QHeaderView::section { background-color: #00695C; color: white; font-weight: bold; }
+        """)
+
+        # Función recursiva para dibujar cada nodo y sus atributos semánticos
+        def dibujar_nodo_semantico(parent_item, ast_node):
+            if ast_node is None: return
+
+            if not hasattr(ast_node, 'tipo_nodo'):
+                QtWidgets.QTreeWidgetItem(parent_item, [f"[Token] -> {str(ast_node)}"])
+                return
+
+            # Construir texto base del nodo (Ej: "id -> x")
+            texto = f"{ast_node.tipo_nodo}"
+            if ast_node.valor:
+                texto += f" -> {ast_node.valor}"
+
+            # --- ANOTACIONES SEMÁNTICAS ---
+            # demostramos que la información fue calculada y propagada
+            anotaciones = []
+            if getattr(ast_node, 'dtype', None): anotaciones.append(f"dtype={ast_node.dtype}")
+            if getattr(ast_node, 'type', None): anotaciones.append(f"type={ast_node.type}")
+            if getattr(ast_node, 'val', None) is not None: anotaciones.append(f"val={ast_node.val}")
+
+            # Si el nodo tiene atributos calculados, los agregamos al texto visual (Ej: "id -> x [type=int]")
+            if anotaciones:
+                texto += f"  [{', '.join(anotaciones)}]"
+
+            item = QtWidgets.QTreeWidgetItem(parent_item, [texto])
+
+            # Resaltar en color naranja si el nodo tiene error semántico para identificar incompatibilidades
+            if "error" in str(getattr(ast_node, 'type', '')).lower() or "invalida" in ast_node.tipo_nodo:
+                item.setForeground(0, QtGui.QBrush(QtGui.QColor("#FF8C00")))
+                fuente = item.font(0)
+                fuente.setBold(True)
+                item.setFont(0, fuente)
+
+            # Llamada recursiva para procesar los hijos
+            for hijo in ast_node.hijos:
+                dibujar_nodo_semantico(item, hijo)
+
+        # Iniciamos el dibujo desde la raíz del árbol
+        dibujar_nodo_semantico(tree_widget, arbol)
+        tree_widget.expandAll()
+        pestaña_arbol.layout().addWidget(tree_widget)
+
+        # Cambiamos el foco visual a la pestaña del árbol anotado ("Semantico")
+        if hasattr(self, 'LCHSS'):
+            idx = self.LCHSS.indexOf(pestaña_arbol)
+            self.LCHSS.setCurrentIndex(idx)
+
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = MiIDE()
