@@ -1,13 +1,3 @@
-# FUNCION : recibe al ast y su raiz y lo recorre
-#el recorrido depende del tipo de atributo
-
-#H ATRIBUTOS HEREDADOS:
-# recorrido: arriba hacia abajo o de izquierda a derecha
-# para propagar el atributo .dtype desde el tipo hacia los identificadores y luego insertarlos en la tabla de simbolos
-
-#ATRIBUTOS SINTETIZADOS:
-# son expresiones con un recorrido postorden (hijos a padre) para .type
-# para .val -> es desde las hojas hasta la raiz
 # compiler/analizadorSemantico.py
 
 class TablaSimbolos:
@@ -22,13 +12,18 @@ class TablaSimbolos:
         self.simbolos[nombre] = {
             'tipo': tipo_dato,
             'memoria': self.contador_memoria,
-            'lineas': [int(linea)] if linea != "-" else []
+            'lineas': [int(linea)] if linea != "-" else [],
+            'val': None  # Valor actual para evaluación constante/simulación
         }
         self.contador_memoria += 1
         return True
 
     def buscar(self, nombre):
         return self.simbolos.get(nombre, None)
+
+    def actualizar_valor(self, nombre, valor):
+        if nombre in self.simbolos:
+            self.simbolos[nombre]['val'] = int(valor) if self.simbolos[nombre]['tipo'] == 'int' and valor is not None else valor
 
     def registrar_uso(self, nombre, linea):
         """Añade la línea al historial permitiendo duplicados si se usa varias veces en la misma línea."""
@@ -66,7 +61,6 @@ class AnalizadorSemantico:
             nodo_ids = nodo.hijos[1]
             for hijo_id in nodo_ids.hijos:
                 hijo_id.dtype = tipo_dato
-                # PASAMOS LA LÍNEA AQUÍ
                 exito = self.tabla_simbolos.insertar(hijo_id.valor, tipo_dato, hijo_id.linea)
                 if not exito:
                     self.registrar_error(hijo_id, f"Declaración duplicada: '{hijo_id.valor}' ya fue declarada.")
@@ -86,14 +80,19 @@ class AnalizadorSemantico:
                 nodo.type = "int"
                 nodo.val = int(nodo.valor)
 
+        elif nodo.tipo_nodo == "booleano":
+            nodo.type = "bool"
+            nodo.val = True if str(nodo.valor).lower() == "true" else False
+
         elif nodo.tipo_nodo == "id":
             simbolo = self.tabla_simbolos.buscar(nodo.valor)
             if simbolo:
                 nodo.type = simbolo['tipo']
-                # REGISTRAMOS EL USO DE LA VARIABLE EN ESTA LÍNEA
+                nodo.val = simbolo['val']  # Recuperamos el valor evaluado
                 self.tabla_simbolos.registrar_uso(nodo.valor, nodo.linea)
             else:
                 nodo.type = "error"
+                nodo.val = None
                 self.registrar_error(nodo, f"Uso de variable no declarada '{nodo.valor}'.")
 
         elif nodo.tipo_nodo in ["expresion_aditiva", "expresion_multiplicativa", "expresion_potencia"]:
@@ -107,9 +106,11 @@ class AnalizadorSemantico:
             else:
                 nodo.type = "int"
 
-            if nodo.hijos[0].val is not None and nodo.hijos[1].val is not None:
+            # Evaluación de valores respetando tipos
+            v1 = getattr(nodo.hijos[0], 'val', None)
+            v2 = getattr(nodo.hijos[1], 'val', None)
+            if v1 is not None and v2 is not None:
                 try:
-                    v1, v2 = nodo.hijos[0].val, nodo.hijos[1].val
                     op = nodo.valor
                     if op == '+':
                         nodo.val = v1 + v2
@@ -117,18 +118,66 @@ class AnalizadorSemantico:
                         nodo.val = v1 - v2
                     elif op == '*':
                         nodo.val = v1 * v2
-                    elif op == '/' and v2 != 0:
-                        nodo.val = v1 / v2
+                    elif op == '/':
+                        if v2 != 0:
+                            nodo.val = v1 / v2
+                    elif op == '%':
+                        nodo.val = v1 % v2
+                    elif op == '^' or op == '**':
+                        nodo.val = v1 ** v2
+
+                    # Si el nodo es de tipo entero, convertimos el resultado a int para eliminar decimales sobrantes
+                    if nodo.type == "int" and nodo.val is not None:
+                        nodo.val = int(nodo.val)
                 except:
                     pass
 
-        elif nodo.tipo_nodo in ["expresion_relacional", "expresion_logica"]:
+        elif nodo.tipo_nodo == "expresion_relacional":
             tipo_izq = nodo.hijos[0].type
             tipo_der = nodo.hijos[1].type
             if tipo_izq == "error" or tipo_der == "error":
                 nodo.type = "error"
             else:
                 nodo.type = "bool"
+
+            v1 = getattr(nodo.hijos[0], 'val', None)
+            v2 = getattr(nodo.hijos[1], 'val', None)
+            if v1 is not None and v2 is not None:
+                op = nodo.valor
+                try:
+                    if op == '<': nodo.val = v1 < v2
+                    elif op == '<=': nodo.val = v1 <= v2
+                    elif op == '>': nodo.val = v1 > v2
+                    elif op == '>=': nodo.val = v1 >= v2
+                    elif op == '==': nodo.val = v1 == v2
+                    elif op == '!=': nodo.val = v1 != v2
+                except:
+                    pass
+
+        elif nodo.tipo_nodo == "expresion_logica":
+            tipo_izq = nodo.hijos[0].type
+            tipo_der = nodo.hijos[1].type
+            if tipo_izq == "error" or tipo_der == "error":
+                nodo.type = "error"
+            else:
+                nodo.type = "bool"
+
+            v1 = getattr(nodo.hijos[0], 'val', None)
+            v2 = getattr(nodo.hijos[1], 'val', None)
+            if v1 is not None and v2 is not None:
+                op = nodo.valor
+                if op == '&&': nodo.val = bool(v1) and bool(v2)
+                elif op == '||': nodo.val = bool(v1) or bool(v2)
+
+        elif nodo.tipo_nodo == "op_logico":  # Not unario
+            tipo_hijo = nodo.hijos[0].type
+            if tipo_hijo == "error":
+                nodo.type = "error"
+            else:
+                nodo.type = "bool"
+            v1 = getattr(nodo.hijos[0], 'val', None)
+            if v1 is not None:
+                nodo.val = not bool(v1)
 
         elif nodo.tipo_nodo == "asignacion":
             nodo_id = nodo.hijos[0]
@@ -144,9 +193,18 @@ class AnalizadorSemantico:
 
                 if tipo_expr != "error":
                     if tipo_var == "int" and tipo_expr == "float":
-                        self.registrar_error(nodo,
-                                             f"Incompatibilidad: No se puede asignar 'float' a la variable entera '{nodo_id.valor}'.")
+                        self.registrar_error(nodo, f"Incompatibilidad: No se puede asignar 'float' a la variable entera '{nodo_id.valor}'.")
+                
                 nodo.type = tipo_var
+                val_expr = getattr(nodo_expr, 'val', None)
+                
+                # Forzar entero si la variable o expresión es int
+                if nodo.type == "int" and val_expr is not None:
+                    nodo.val = int(val_expr)
+                else:
+                    nodo.val = val_expr
+
+                self.tabla_simbolos.actualizar_valor(nodo_id.valor, nodo.val)
 
         elif nodo.tipo_nodo == "lectura_cin":
             nodo_id = nodo.hijos[0]
@@ -164,3 +222,16 @@ class AnalizadorSemantico:
                 self.registrar_error(nodo_id, f"Operación (++ o --) sobre variable no declarada '{nodo_id.valor}'.")
             elif simbolo['tipo'] not in ["int", "float"]:
                 self.registrar_error(nodo, f"La operación '{nodo.valor}' requiere variable numérica.")
+            else:
+                val_actual = simbolo['val']
+                if val_actual is not None:
+                    if nodo.valor == '++':
+                        nuevo_val = val_actual + 1
+                    else:
+                        nuevo_val = val_actual - 1
+                    
+                    if simbolo['tipo'] == 'int':
+                        nuevo_val = int(nuevo_val)
+                        
+                    self.tabla_simbolos.actualizar_valor(nodo_id.valor, nuevo_val)
+                    nodo.val = nuevo_val
