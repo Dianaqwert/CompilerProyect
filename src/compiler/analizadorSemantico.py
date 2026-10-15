@@ -126,7 +126,7 @@ class AnalizadorSemantico:
                     elif op == '^' or op == '**':
                         nodo.val = v1 ** v2
 
-                    # Si el nodo es de tipo entero, convertimos el resultado a int para eliminar decimales sobrantes
+                    # Si el nodo es de tipo entero, convertimos el resultado a int para eliminar decimales
                     if nodo.type == "int" and nodo.val is not None:
                         nodo.val = int(nodo.val)
                 except:
@@ -191,20 +191,23 @@ class AnalizadorSemantico:
                 tipo_var = simbolo['tipo']
                 tipo_expr = nodo_expr.type
 
+                hubo_error_tipos = False
                 if tipo_expr != "error":
                     if tipo_var == "int" and tipo_expr == "float":
                         self.registrar_error(nodo, f"Incompatibilidad: No se puede asignar 'float' a la variable entera '{nodo_id.valor}'.")
+                        hubo_error_tipos = True
                 
-                nodo.type = tipo_var
-                val_expr = getattr(nodo_expr, 'val', None)
-                
-                # Forzar entero si la variable o expresión es int
-                if nodo.type == "int" and val_expr is not None:
-                    nodo.val = int(val_expr)
+                if hubo_error_tipos:
+                    nodo.type = "error"
+                    nodo.val = None
                 else:
-                    nodo.val = val_expr
-
-                self.tabla_simbolos.actualizar_valor(nodo_id.valor, nodo.val)
+                    nodo.type = tipo_var
+                    val_expr = getattr(nodo_expr, 'val', None)
+                    if nodo.type == "int" and val_expr is not None:
+                        nodo.val = int(val_expr)
+                    else:
+                        nodo.val = val_expr
+                    self.tabla_simbolos.actualizar_valor(nodo_id.valor, nodo.val)
 
         elif nodo.tipo_nodo == "lectura_cin":
             nodo_id = nodo.hijos[0]
