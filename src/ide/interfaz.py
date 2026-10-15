@@ -223,7 +223,7 @@ class MiIDE(QtWidgets.QMainWindow):
             with open(nombre, 'r', encoding='utf-8') as f:
                 self.codigotextoplano.setPlainText(f.read())
             self.archivo_actual = nombre
-            self.setWindowTitle(f"Diana IDE - {os.path.basename(nombre)}")
+            self.setWindowTitle(f"IDE - {os.path.basename(nombre)}")
 
     def guardar_archivo(self):
         if self.archivo_actual:
@@ -239,7 +239,7 @@ class MiIDE(QtWidgets.QMainWindow):
             with open(nombre, 'w', encoding='utf-8') as f:
                 f.write(self.codigotextoplano.toPlainText())
             self.archivo_actual = nombre
-            self.setWindowTitle(f"Diana IDE - {os.path.basename(nombre)}")
+            self.setWindowTitle(f"IDE - {os.path.basename(nombre)}")
 
     def cerrar_archivo(self):
         # 1. ¿Hay cambios sin guardar?
@@ -265,7 +265,7 @@ class MiIDE(QtWidgets.QMainWindow):
         self.codigotextoplano.clear()
         self.archivo_actual = None
         self.contenido_original = ""
-        self.setWindowTitle("Diana IDE - Sin archivo")
+        self.setWindowTitle("IDE - Sin archivo")
         self.statusbar.showMessage("Archivo cerrado correctamente", 3000)
 
     #################################################### ANALIZADOR LEXICO ################################################
