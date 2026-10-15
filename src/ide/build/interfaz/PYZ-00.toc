@@ -1,0 +1,750 @@
+('D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\src\\ide\\build\\interfaz\\PYZ-00.pyz',
+ [('PyQt6',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\__init__.py',
+   'PYMODULE'),
+  ('PyQt6.uic',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\__init__.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Compiler',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Compiler\\__init__.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Compiler.as_string',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Compiler\\as_string.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Compiler.compiler',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Compiler\\compiler.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Compiler.indenter',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Compiler\\indenter.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Compiler.misc',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Compiler\\misc.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Compiler.proxy_metaclass',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Compiler\\proxy_metaclass.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Compiler.qobjectcreator',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Compiler\\qobjectcreator.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Compiler.qtproxies',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Compiler\\qtproxies.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Loader',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Loader\\__init__.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Loader.loader',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Loader\\loader.py',
+   'PYMODULE'),
+  ('PyQt6.uic.Loader.qobjectcreator',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\Loader\\qobjectcreator.py',
+   'PYMODULE'),
+  ('PyQt6.uic.compile_ui',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\compile_ui.py',
+   'PYMODULE'),
+  ('PyQt6.uic.enum_map',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\enum_map.py',
+   'PYMODULE'),
+  ('PyQt6.uic.exceptions',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\exceptions.py',
+   'PYMODULE'),
+  ('PyQt6.uic.icon_cache',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\icon_cache.py',
+   'PYMODULE'),
+  ('PyQt6.uic.load_ui',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\load_ui.py',
+   'PYMODULE'),
+  ('PyQt6.uic.objcreator',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\objcreator.py',
+   'PYMODULE'),
+  ('PyQt6.uic.properties',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\properties.py',
+   'PYMODULE'),
+  ('PyQt6.uic.ui_file',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\ui_file.py',
+   'PYMODULE'),
+  ('PyQt6.uic.uiparser',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyQt6\\uic\\uiparser.py',
+   'PYMODULE'),
+  ('_compat_pickle',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\_compat_pickle.py',
+   'PYMODULE'),
+  ('_compression',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\_compression.py',
+   'PYMODULE'),
+  ('_py_abc',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\_py_abc.py',
+   'PYMODULE'),
+  ('_pydatetime',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\_pydatetime.py',
+   'PYMODULE'),
+  ('_pydecimal',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\_pydecimal.py',
+   'PYMODULE'),
+  ('_pyi_rth_utils',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyInstaller\\fake-modules\\_pyi_rth_utils\\__init__.py',
+   'PYMODULE'),
+  ('_pyi_rth_utils.qt',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\PyInstaller\\fake-modules\\_pyi_rth_utils\\qt.py',
+   'PYMODULE'),
+  ('_strptime',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\_strptime.py',
+   'PYMODULE'),
+  ('_threading_local',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\_threading_local.py',
+   'PYMODULE'),
+  ('argparse',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\argparse.py',
+   'PYMODULE'),
+  ('ast',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\ast.py',
+   'PYMODULE'),
+  ('base64',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\base64.py',
+   'PYMODULE'),
+  ('bisect',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\bisect.py',
+   'PYMODULE'),
+  ('bz2',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\bz2.py',
+   'PYMODULE'),
+  ('calendar',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\calendar.py',
+   'PYMODULE'),
+  ('compiler', '-', 'PYMODULE'),
+  ('compiler.analizadorLexico',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\src\\compiler\\analizadorLexico.py',
+   'PYMODULE'),
+  ('compiler.highlighter',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\src\\compiler\\highlighter.py',
+   'PYMODULE'),
+  ('concurrent',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\concurrent\\__init__.py',
+   'PYMODULE'),
+  ('concurrent.futures',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\concurrent\\futures\\__init__.py',
+   'PYMODULE'),
+  ('concurrent.futures._base',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\concurrent\\futures\\_base.py',
+   'PYMODULE'),
+  ('concurrent.futures.process',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\concurrent\\futures\\process.py',
+   'PYMODULE'),
+  ('concurrent.futures.thread',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\concurrent\\futures\\thread.py',
+   'PYMODULE'),
+  ('contextlib',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\contextlib.py',
+   'PYMODULE'),
+  ('contextvars',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\contextvars.py',
+   'PYMODULE'),
+  ('copy',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\copy.py',
+   'PYMODULE'),
+  ('csv',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\csv.py',
+   'PYMODULE'),
+  ('ctypes',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\ctypes\\__init__.py',
+   'PYMODULE'),
+  ('ctypes._endian',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\ctypes\\_endian.py',
+   'PYMODULE'),
+  ('dataclasses',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\dataclasses.py',
+   'PYMODULE'),
+  ('datetime',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\datetime.py',
+   'PYMODULE'),
+  ('decimal',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\decimal.py',
+   'PYMODULE'),
+  ('dis',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\dis.py',
+   'PYMODULE'),
+  ('email',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\__init__.py',
+   'PYMODULE'),
+  ('email._encoded_words',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\_encoded_words.py',
+   'PYMODULE'),
+  ('email._header_value_parser',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\_header_value_parser.py',
+   'PYMODULE'),
+  ('email._parseaddr',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\_parseaddr.py',
+   'PYMODULE'),
+  ('email._policybase',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\_policybase.py',
+   'PYMODULE'),
+  ('email.base64mime',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\base64mime.py',
+   'PYMODULE'),
+  ('email.charset',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\charset.py',
+   'PYMODULE'),
+  ('email.contentmanager',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\contentmanager.py',
+   'PYMODULE'),
+  ('email.encoders',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\encoders.py',
+   'PYMODULE'),
+  ('email.errors',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\errors.py',
+   'PYMODULE'),
+  ('email.feedparser',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\feedparser.py',
+   'PYMODULE'),
+  ('email.generator',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\generator.py',
+   'PYMODULE'),
+  ('email.header',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\header.py',
+   'PYMODULE'),
+  ('email.headerregistry',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\headerregistry.py',
+   'PYMODULE'),
+  ('email.iterators',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\iterators.py',
+   'PYMODULE'),
+  ('email.message',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\message.py',
+   'PYMODULE'),
+  ('email.parser',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\parser.py',
+   'PYMODULE'),
+  ('email.policy',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\policy.py',
+   'PYMODULE'),
+  ('email.quoprimime',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\quoprimime.py',
+   'PYMODULE'),
+  ('email.utils',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\email\\utils.py',
+   'PYMODULE'),
+  ('fnmatch',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\fnmatch.py',
+   'PYMODULE'),
+  ('fractions',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\fractions.py',
+   'PYMODULE'),
+  ('ftplib',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\ftplib.py',
+   'PYMODULE'),
+  ('getopt',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\getopt.py',
+   'PYMODULE'),
+  ('getpass',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\getpass.py',
+   'PYMODULE'),
+  ('gettext',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\gettext.py',
+   'PYMODULE'),
+  ('gzip',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\gzip.py',
+   'PYMODULE'),
+  ('hashlib',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\hashlib.py',
+   'PYMODULE'),
+  ('hmac',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\hmac.py',
+   'PYMODULE'),
+  ('http',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\http\\__init__.py',
+   'PYMODULE'),
+  ('http.client',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\http\\client.py',
+   'PYMODULE'),
+  ('http.cookiejar',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\http\\cookiejar.py',
+   'PYMODULE'),
+  ('importlib',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\__init__.py',
+   'PYMODULE'),
+  ('importlib._abc',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\_abc.py',
+   'PYMODULE'),
+  ('importlib._bootstrap',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\_bootstrap.py',
+   'PYMODULE'),
+  ('importlib._bootstrap_external',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\_bootstrap_external.py',
+   'PYMODULE'),
+  ('importlib.abc',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\abc.py',
+   'PYMODULE'),
+  ('importlib.machinery',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\machinery.py',
+   'PYMODULE'),
+  ('importlib.metadata',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\metadata\\__init__.py',
+   'PYMODULE'),
+  ('importlib.metadata._adapters',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\metadata\\_adapters.py',
+   'PYMODULE'),
+  ('importlib.metadata._collections',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\metadata\\_collections.py',
+   'PYMODULE'),
+  ('importlib.metadata._functools',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\metadata\\_functools.py',
+   'PYMODULE'),
+  ('importlib.metadata._itertools',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\metadata\\_itertools.py',
+   'PYMODULE'),
+  ('importlib.metadata._meta',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\metadata\\_meta.py',
+   'PYMODULE'),
+  ('importlib.metadata._text',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\metadata\\_text.py',
+   'PYMODULE'),
+  ('importlib.readers',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\readers.py',
+   'PYMODULE'),
+  ('importlib.resources',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\resources\\__init__.py',
+   'PYMODULE'),
+  ('importlib.resources._adapters',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\resources\\_adapters.py',
+   'PYMODULE'),
+  ('importlib.resources._common',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\resources\\_common.py',
+   'PYMODULE'),
+  ('importlib.resources._itertools',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\resources\\_itertools.py',
+   'PYMODULE'),
+  ('importlib.resources._legacy',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\resources\\_legacy.py',
+   'PYMODULE'),
+  ('importlib.resources.abc',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\resources\\abc.py',
+   'PYMODULE'),
+  ('importlib.resources.readers',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\resources\\readers.py',
+   'PYMODULE'),
+  ('importlib.util',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\importlib\\util.py',
+   'PYMODULE'),
+  ('inspect',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\inspect.py',
+   'PYMODULE'),
+  ('ipaddress',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\ipaddress.py',
+   'PYMODULE'),
+  ('logging',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\logging\\__init__.py',
+   'PYMODULE'),
+  ('lzma',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\lzma.py',
+   'PYMODULE'),
+  ('mimetypes',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\mimetypes.py',
+   'PYMODULE'),
+  ('multiprocessing',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\__init__.py',
+   'PYMODULE'),
+  ('multiprocessing.connection',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\connection.py',
+   'PYMODULE'),
+  ('multiprocessing.context',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\context.py',
+   'PYMODULE'),
+  ('multiprocessing.dummy',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\dummy\\__init__.py',
+   'PYMODULE'),
+  ('multiprocessing.dummy.connection',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\dummy\\connection.py',
+   'PYMODULE'),
+  ('multiprocessing.forkserver',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\forkserver.py',
+   'PYMODULE'),
+  ('multiprocessing.heap',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\heap.py',
+   'PYMODULE'),
+  ('multiprocessing.managers',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\managers.py',
+   'PYMODULE'),
+  ('multiprocessing.pool',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\pool.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_fork',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\popen_fork.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_forkserver',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\popen_forkserver.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_spawn_posix',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\popen_spawn_posix.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_spawn_win32',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\popen_spawn_win32.py',
+   'PYMODULE'),
+  ('multiprocessing.process',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\process.py',
+   'PYMODULE'),
+  ('multiprocessing.queues',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\queues.py',
+   'PYMODULE'),
+  ('multiprocessing.reduction',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\reduction.py',
+   'PYMODULE'),
+  ('multiprocessing.resource_sharer',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\resource_sharer.py',
+   'PYMODULE'),
+  ('multiprocessing.resource_tracker',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\resource_tracker.py',
+   'PYMODULE'),
+  ('multiprocessing.shared_memory',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\shared_memory.py',
+   'PYMODULE'),
+  ('multiprocessing.sharedctypes',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\sharedctypes.py',
+   'PYMODULE'),
+  ('multiprocessing.spawn',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\spawn.py',
+   'PYMODULE'),
+  ('multiprocessing.synchronize',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\synchronize.py',
+   'PYMODULE'),
+  ('multiprocessing.util',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\multiprocessing\\util.py',
+   'PYMODULE'),
+  ('netrc',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\netrc.py',
+   'PYMODULE'),
+  ('nturl2path',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\nturl2path.py',
+   'PYMODULE'),
+  ('numbers',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\numbers.py',
+   'PYMODULE'),
+  ('opcode',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\opcode.py',
+   'PYMODULE'),
+  ('pathlib',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\pathlib.py',
+   'PYMODULE'),
+  ('pickle',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\pickle.py',
+   'PYMODULE'),
+  ('pkgutil',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\pkgutil.py',
+   'PYMODULE'),
+  ('ply',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\ply\\__init__.py',
+   'PYMODULE'),
+  ('ply.lex',
+   'D:\\Proyectos_8vo\\Compiladores_Si\\compilador_F1\\proyecto\\venv\\Lib\\site-packages\\ply\\lex.py',
+   'PYMODULE'),
+  ('pprint',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\pprint.py',
+   'PYMODULE'),
+  ('py_compile',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\py_compile.py',
+   'PYMODULE'),
+  ('queue',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\queue.py',
+   'PYMODULE'),
+  ('quopri',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\quopri.py',
+   'PYMODULE'),
+  ('random',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\random.py',
+   'PYMODULE'),
+  ('runpy',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\runpy.py',
+   'PYMODULE'),
+  ('secrets',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\secrets.py',
+   'PYMODULE'),
+  ('selectors',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\selectors.py',
+   'PYMODULE'),
+  ('shutil',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\shutil.py',
+   'PYMODULE'),
+  ('signal',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\signal.py',
+   'PYMODULE'),
+  ('socket',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\socket.py',
+   'PYMODULE'),
+  ('ssl',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\ssl.py',
+   'PYMODULE'),
+  ('statistics',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\statistics.py',
+   'PYMODULE'),
+  ('string',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\string.py',
+   'PYMODULE'),
+  ('stringprep',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\stringprep.py',
+   'PYMODULE'),
+  ('subprocess',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\subprocess.py',
+   'PYMODULE'),
+  ('tarfile',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\tarfile.py',
+   'PYMODULE'),
+  ('tempfile',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\tempfile.py',
+   'PYMODULE'),
+  ('textwrap',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\textwrap.py',
+   'PYMODULE'),
+  ('threading',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\threading.py',
+   'PYMODULE'),
+  ('token',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\token.py',
+   'PYMODULE'),
+  ('tokenize',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\tokenize.py',
+   'PYMODULE'),
+  ('tracemalloc',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\tracemalloc.py',
+   'PYMODULE'),
+  ('typing',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\typing.py',
+   'PYMODULE'),
+  ('urllib',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\urllib\\__init__.py',
+   'PYMODULE'),
+  ('urllib.error',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\urllib\\error.py',
+   'PYMODULE'),
+  ('urllib.parse',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\urllib\\parse.py',
+   'PYMODULE'),
+  ('urllib.request',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\urllib\\request.py',
+   'PYMODULE'),
+  ('urllib.response',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\urllib\\response.py',
+   'PYMODULE'),
+  ('xml',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\__init__.py',
+   'PYMODULE'),
+  ('xml.etree',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\etree\\__init__.py',
+   'PYMODULE'),
+  ('xml.etree.ElementInclude',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\etree\\ElementInclude.py',
+   'PYMODULE'),
+  ('xml.etree.ElementPath',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\etree\\ElementPath.py',
+   'PYMODULE'),
+  ('xml.etree.ElementTree',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\etree\\ElementTree.py',
+   'PYMODULE'),
+  ('xml.etree.cElementTree',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\etree\\cElementTree.py',
+   'PYMODULE'),
+  ('xml.parsers',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\parsers\\__init__.py',
+   'PYMODULE'),
+  ('xml.parsers.expat',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\parsers\\expat.py',
+   'PYMODULE'),
+  ('xml.sax',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\sax\\__init__.py',
+   'PYMODULE'),
+  ('xml.sax._exceptions',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\sax\\_exceptions.py',
+   'PYMODULE'),
+  ('xml.sax.expatreader',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\sax\\expatreader.py',
+   'PYMODULE'),
+  ('xml.sax.handler',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\sax\\handler.py',
+   'PYMODULE'),
+  ('xml.sax.saxutils',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\sax\\saxutils.py',
+   'PYMODULE'),
+  ('xml.sax.xmlreader',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xml\\sax\\xmlreader.py',
+   'PYMODULE'),
+  ('xmlrpc',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xmlrpc\\__init__.py',
+   'PYMODULE'),
+  ('xmlrpc.client',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\xmlrpc\\client.py',
+   'PYMODULE'),
+  ('zipfile',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\zipfile\\__init__.py',
+   'PYMODULE'),
+  ('zipfile._path',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\zipfile\\_path\\__init__.py',
+   'PYMODULE'),
+  ('zipfile._path.glob',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\zipfile\\_path\\glob.py',
+   'PYMODULE'),
+  ('zipimport',
+   'C:\\Users\\Asus Ryzen '
+   '5\\AppData\\Local\\Python\\pythoncore-3.12-64\\Lib\\zipimport.py',
+   'PYMODULE')])

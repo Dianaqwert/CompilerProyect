@@ -30,28 +30,35 @@ class NumeroLineas(QtWidgets.QWidget):
         self.editor.pintar_numeros_linea(event)
 
 # --- 2. EDITOR DE CÓDIGO ---
+# --- 2. EDITOR DE CÓDIGO ---
 class EditorConLineas(QtWidgets.QPlainTextEdit):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.area_numeros = NumeroLineas(self)
+        self.lineas_con_error = []  # NUEVA LISTA: Guarda qué líneas pintar de rojo
         self.setLineWrapMode(QtWidgets.QPlainTextEdit.LineWrapMode.NoWrap)
         self.blockCountChanged.connect(self.actualizar_ancho_area_numeros)
         self.updateRequest.connect(self.actualizar_area_numeros)
-        self.cursorPositionChanged.connect(self.resaltar_linea_actual)
+        self.cursorPositionChanged.connect(self.resaltar_lineas)  # Modificado
         self.actualizar_ancho_area_numeros(0)
-        #
+
+    # NUEVA FUNCIÓN: Recibe los errores y actualiza el editor
+    def set_errores(self, lineas):
+        self.lineas_con_error = lineas
+        self.resaltar_lineas()
 
     def area_numeros_ancho(self):
         digitos = len(str(max(1, self.blockCount())))
-        ancho = 20 + self.fontMetrics().horizontalAdvance('9') * digitos
-        return ancho
+        return 20 + self.fontMetrics().horizontalAdvance('9') * digitos
 
     def actualizar_ancho_area_numeros(self, _):
         self.setViewportMargins(self.area_numeros_ancho(), 0, 0, 0)
 
     def actualizar_area_numeros(self, rect, dy):
-        if dy: self.area_numeros.scroll(0, dy)
-        else: self.area_numeros.update(0, rect.y(), self.area_numeros.width(), rect.height())
+        if dy:
+            self.area_numeros.scroll(0, dy)
+        else:
+            self.area_numeros.update(0, rect.y(), self.area_numeros.width(), rect.height())
         if rect.contains(self.viewport().rect()): self.actualizar_ancho_area_numeros(0)
 
     def resizeEvent(self, event):
@@ -61,7 +68,7 @@ class EditorConLineas(QtWidgets.QPlainTextEdit):
 
     def pintar_numeros_linea(self, event):
         painter = QtGui.QPainter(self.area_numeros)
-        painter.fillRect(event.rect(), QtGui.QColor("#2b2b2b")) # Fondo oscuro IntelliJ
+        painter.fillRect(event.rect(), QtGui.QColor("#2b2b2b"))
         bloque = self.firstVisibleBlock()
         num_bloque = bloque.blockNumber()
         top = int(self.blockBoundingGeometry(bloque).translated(self.contentOffset()).top())
@@ -70,7 +77,9 @@ class EditorConLineas(QtWidgets.QPlainTextEdit):
         while bloque.isValid() and top <= event.rect().bottom():
             if bloque.isVisible() and bottom >= event.rect().top():
                 numero = str(num_bloque + 1)
-                painter.setPen(QtGui.QColor("#606366"))
+                # Si esta línea tiene error, pintamos el número de rojo también
+                color_texto = "#FF6B6B" if (num_bloque + 1) in self.lineas_con_error else "#606366"
+                painter.setPen(QtGui.QColor(color_texto))
                 painter.drawText(0, top, self.area_numeros.width() - 5, self.fontMetrics().height(),
                                  QtCore.Qt.AlignmentFlag.AlignRight, numero)
             bloque = bloque.next()
@@ -78,15 +87,37 @@ class EditorConLineas(QtWidgets.QPlainTextEdit):
             bottom = top + int(self.blockBoundingRect(bloque).height())
             num_bloque += 1
 
-    def resaltar_linea_actual(self):
+    # FUNCIÓN MODIFICADA: Pinta la línea actual y los errores
+    def resaltar_lineas(self):
         selections = []
+        doc = self.document()
+
+        # 1. PINTAR LAS LÍNEAS CON ERROR (Fondo rojizo y subrayado)
+        for linea in self.lineas_con_error:
+            bloque = doc.findBlockByNumber(linea - 1)  # Qt empieza a contar desde 0
+            if bloque.isValid():
+                seleccion_error = QtWidgets.QTextEdit.ExtraSelection()
+                # Fondo rojo oscuro transparente
+                seleccion_error.format.setBackground(QtGui.QColor(85, 0, 0, 150))
+                # Subrayado rojo tipo error ortográfico
+                seleccion_error.format.setUnderlineColor(QtGui.QColor("red"))
+                seleccion_error.format.setUnderlineStyle(QtGui.QTextCharFormat.UnderlineStyle.SpellCheckUnderline)
+                seleccion_error.format.setProperty(QtGui.QTextFormat.Property.FullWidthSelection, True)
+
+                cursor_error = QtGui.QTextCursor(bloque)
+                seleccion_error.cursor = cursor_error
+                seleccion_error.cursor.clearSelection()
+                selections.append(seleccion_error)
+
+        # 2. PINTAR LA LÍNEA ACTUAL DONDE ESTÁ EL CURSOR
         if not self.isReadOnly():
             selection = QtWidgets.QTextEdit.ExtraSelection()
-            selection.format.setBackground(QtGui.QColor("#323232")) # Color de línea activa
+            selection.format.setBackground(QtGui.QColor("#323232"))
             selection.format.setProperty(QtGui.QTextFormat.Property.FullWidthSelection, True)
             selection.cursor = self.textCursor()
             selection.cursor.clearSelection()
             selections.append(selection)
+
         self.setExtraSelections(selections)
 
 # --- 3. VENTANA PRINCIPAL ---
@@ -240,6 +271,7 @@ class MiIDE(QtWidgets.QMainWindow):
     #################################################### ANALIZADOR LEXICO ################################################
     def ejecutar_analisis_lexico(self):
         print("Botón presionado: Ejecutando análisis...")  # Mensaje para confirmar en consola
+        self.codigotextoplano.set_errores([])
         codigo = self.codigotextoplano.toPlainText()
 
         lexer.input(codigo)
@@ -362,8 +394,8 @@ class MiIDE(QtWidgets.QMainWindow):
         # EJECUCIÓN SINTÁCTICA
         # =========================================================
         arbol, errores_sint = ejecutar_parser(codigo)
-
-        # ---------------------------------------------------------
+        lineas_err_sint = [int(e[0]) for e in errores_sint if isinstance(e, tuple) and str(e[0]).isdigit()]
+        self.codigotextoplano.set_errores(lineas_err_sint)        # ---------------------------------------------------------
         # 1. LLENAR LA TABLA DE ERRORES SINTÁCTICOS DEL DESIGNER
         # ---------------------------------------------------------
         self.tablaErroresSintacticos.setColumnCount(3)
@@ -493,11 +525,9 @@ class MiIDE(QtWidgets.QMainWindow):
         # ---------------------------------------------------------
         analizador_semantico = AnalizadorSemantico()
         tabla_simbolos_generada, errores_sem = analizador_semantico.analizar(arbol)
-
-        # ---------------------------------------------------------
-        # PASO 3: LLENAR LA TABLA DE ERRORES SEMÁNTICOS
-        # Muestra variables no declaradas o incompatibilidad de tipos.
-        # ---------------------------------------------------------
+        # Extraemos los números de línea de los errores semánticos
+        lineas_err_sem = [int(e[0]) for e in errores_sem if isinstance(e, tuple) and str(e[0]).isdigit()]
+        self.codigotextoplano.set_errores(lineas_err_sem)
         # ---------------------------------------------------------
         # PASO 3: LLENAR LA TABLA DE ERRORES SEMÁNTICOS
         # ---------------------------------------------------------
@@ -506,9 +536,22 @@ class MiIDE(QtWidgets.QMainWindow):
             self.tablaErroresSemanticos.setHorizontalHeaderLabels(["Línea", "Columna", "Descripción del Error"])
             self.tablaErroresSemanticos.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
 
+            # FORZAMOS LA VISIBILIDAD DE LA CABECERA
+            self.tablaErroresSemanticos.horizontalHeader().setVisible(True)
+
+            # HOJA DE ESTILOS IDÉNTICA AL SINTÁCTICO
+            self.tablaErroresSemanticos.setStyleSheet("""
+                        QTableWidget { background-color: #1E1E1E; color: #E5E5E5; font-size: 13px; gridline-color: #323232; }
+                        QHeaderView::section { background-color: #2D2D2D; color: #FF6B6B; font-weight: bold; border: 1px solid #3F444D; }
+                    """)
+
+            # CONFIGURACIÓN DE ANCHOS DE COLUMNA
             header_errores = self.tablaErroresSemanticos.horizontalHeader()
-            header_errores.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
-            header_errores.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
+            header_errores.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)  # Línea: Ajustado al número
+            header_errores.setSectionResizeMode(1,
+                                                QHeaderView.ResizeMode.ResizeToContents)  # Columna: Ajustado al número
+
+            # EL SECRETO PARA QUE NO SE CORTE EL TEXTO: Stretch expande la última columna hasta llenar la pantalla
             header_errores.setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
 
             self.tablaErroresSemanticos.setRowCount(0)
@@ -531,25 +574,58 @@ class MiIDE(QtWidgets.QMainWindow):
 
         except AttributeError:
             print("\n❌ ERROR DE INTERFAZ: Python no encuentra 'tablaErroresSemanticos'")
+
         # ---------------------------------------------------------
         # PASO 4: LLENAR LA TABLA DE SÍMBOLOS (Pestaña "Hash Table")
         # Visualiza el diccionario/hash que contiene las variables declaradas y su tipo.
         # ---------------------------------------------------------
+            # ---------------------------------------------------------
+            # PASO 4: LLENAR LA TABLA DE SÍMBOLOS (Pestaña "Hash Table")
+            # ---------------------------------------------------------
         if hasattr(self, 'tablaSimbolos'):
-            self.tablaSimbolos.setColumnCount(2)
-            self.tablaSimbolos.setHorizontalHeaderLabels(["Nombre del Identificador", "Tipo de Dato"])
+            self.tablaSimbolos.setColumnCount(4)
+            # Configuramos las 4 columnas idénticas a la imagen de referencia
+            self.tablaSimbolos.setHorizontalHeaderLabels(["ID", "Tipo", "Memoria", "Línea"])
             self.tablaSimbolos.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger.NoEditTriggers)
-            self.tablaSimbolos.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
-            self.tablaSimbolos.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)
 
-            self.tablaSimbolos.setRowCount(0) # Limpiar tabla anterior
-            # Llenamos la interfaz con los datos del diccionario de la clase TablaSimbolos
+            # Estilo oscuro y limpio para que combine con el resto de la interfaz
+            self.tablaSimbolos.setStyleSheet("""
+                    QTableWidget { background-color: #1E1E1E; color: #E5E5E5; font-size: 13px; gridline-color: #323232; border: none; }
+                    QHeaderView::section { background-color: #2D2D2D; color: #4DAAFE; font-weight: bold; font-size: 14px; border: 1px solid #3F444D; padding: 5px; }
+                """)
+
+            header_hash = self.tablaSimbolos.horizontalHeader()
+            header_hash.setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)  # ID
+            header_hash.setSectionResizeMode(1, QHeaderView.ResizeMode.ResizeToContents)  # Tipo
+            header_hash.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)  # Memoria
+            header_hash.setSectionResizeMode(3, QHeaderView.ResizeMode.Stretch)  # Línea (Se expande)
+
+            self.tablaSimbolos.setRowCount(0)
             self.tablaSimbolos.setRowCount(len(tabla_simbolos_generada.simbolos))
 
+            # Desempaquetamos y llenamos la interfaz
             for i, (nombre, info) in enumerate(tabla_simbolos_generada.simbolos.items()):
                 self.tablaSimbolos.setItem(i, 0, QtWidgets.QTableWidgetItem(str(nombre)))
                 self.tablaSimbolos.setItem(i, 1, QtWidgets.QTableWidgetItem(str(info['tipo'])))
+                self.tablaSimbolos.setItem(i, 2, QtWidgets.QTableWidgetItem(str(info['memoria'])))
 
+                # --- NUEVA LÓGICA: RECUADROS DINÁMICOS (BADGES) ---
+                etiqueta_lineas = QtWidgets.QLabel()
+
+                # Construimos un diseño HTML para cada número.
+                # El &nbsp; simula un pequeño espacio interno (padding) dentro del recuadro.
+                html_badges = " ".join([
+                    f'<span style="background-color: #2D333B; color: #539BF5;">&nbsp;{l}&nbsp;</span>'
+                    for l in info['lineas']
+                ])
+
+                etiqueta_lineas.setText(html_badges)
+                etiqueta_lineas.setContentsMargins(5, 0, 0, 0)  # Margen izquierdo
+                # Hacemos que el fondo general del Label sea transparente para que se funda con la tabla
+                etiqueta_lineas.setStyleSheet("background-color: transparent;")
+
+                # Inyectamos nuestro recuadro HTML dinámico dentro de la columna 3 (Línea)
+                self.tablaSimbolos.setCellWidget(i, 3, etiqueta_lineas)
         # ---------------------------------------------------------
         # PASO 5: DIBUJAR ÁRBOL SINTÁCTICO ANOTADO (Pestaña "Semantico")
         # Construye visualmente el AST mostrando los atributos heredados y sintetizados.
@@ -573,6 +649,7 @@ class MiIDE(QtWidgets.QMainWindow):
         """)
 
         # Función recursiva para dibujar cada nodo y sus atributos semánticos
+        # Función recursiva para dibujar cada nodo y sus atributos semánticos
         def dibujar_nodo_semantico(parent_item, ast_node):
             if ast_node is None: return
 
@@ -580,30 +657,66 @@ class MiIDE(QtWidgets.QMainWindow):
                 QtWidgets.QTreeWidgetItem(parent_item, [f"[Token] -> {str(ast_node)}"])
                 return
 
-            # Construir texto base del nodo (Ej: "id -> x")
-            texto = f"{ast_node.tipo_nodo}"
-            if ast_node.valor:
-                texto += f" -> {ast_node.valor}"
+            # Creamos el elemento del árbol vacío
+            item = QtWidgets.QTreeWidgetItem(parent_item)
 
-            # --- ANOTACIONES SEMÁNTICAS ---
-            # demostramos que la información fue calculada y propagada
+            # Construimos el texto del nodo original
+            texto_base = f"{ast_node.tipo_nodo}"
+            if ast_node.valor:
+                texto_base += f" -> {ast_node.valor}"
+
+            # Construimos las anotaciones semánticas
             anotaciones = []
             if getattr(ast_node, 'dtype', None): anotaciones.append(f"dtype={ast_node.dtype}")
             if getattr(ast_node, 'type', None): anotaciones.append(f"type={ast_node.type}")
             if getattr(ast_node, 'val', None) is not None: anotaciones.append(f"val={ast_node.val}")
 
-            # Si el nodo tiene atributos calculados, los agregamos al texto visual (Ej: "id -> x [type=int]")
+            # Creamos el contenedor HTML/CSS
+            widget_nodo = QtWidgets.QWidget()
+            layout_nodo = QtWidgets.QHBoxLayout(widget_nodo)
+            layout_nodo.setContentsMargins(0, 0, 0, 0)
+            layout_nodo.setSpacing(5)
+
+            # 1. Etiqueta para el texto del AST (AZUL PASTEL SUAVE)
+            lbl_ast = QtWidgets.QLabel(texto_base)
+            lbl_ast.setStyleSheet("color: #AEC6CF; font-weight: bold;")
+            layout_nodo.addWidget(lbl_ast)
+
+            # 2. Etiqueta para las anotaciones semánticas (VERDE PASTEL SUAVE)
             if anotaciones:
-                texto += f"  [{', '.join(anotaciones)}]"
+                texto_semantico = f"[{', '.join(anotaciones)}]"
+                lbl_sem = QtWidgets.QLabel(texto_semantico)
 
-            item = QtWidgets.QTreeWidgetItem(parent_item, [texto])
+                es_error = "error" in str(getattr(ast_node, 'type', '')).lower() or "invalida" in ast_node.tipo_nodo
 
-            # Resaltar en color naranja si el nodo tiene error semántico para identificar incompatibilidades
-            if "error" in str(getattr(ast_node, 'type', '')).lower() or "invalida" in ast_node.tipo_nodo:
-                item.setForeground(0, QtGui.QBrush(QtGui.QColor("#FF8C00")))
-                fuente = item.font(0)
-                fuente.setBold(True)
-                item.setFont(0, fuente)
+                if es_error:
+                    # Placa Naranja Pastel / Fondo cálido apagado para errores
+                    lbl_sem.setStyleSheet("""
+                                background-color: #3D2828; 
+                                color: #FFB347; 
+                                border-radius: 4px; 
+                                padding: 1px 4px; 
+                                font-weight: bold;
+                            """)
+                    lbl_ast.setStyleSheet(
+                        "color: #FF9A9A; font-weight: bold; text-decoration: underline;")  # Rojo pastel
+                else:
+                    # Placa Verde Menta Pastel / Fondo verde musgo oscuro
+                    lbl_sem.setStyleSheet("""
+                                background-color: #27382D; 
+                                color: #A8E6CF; 
+                                border-radius: 4px; 
+                                padding: 1px 4px;
+                            """)
+
+                layout_nodo.addWidget(lbl_sem)
+            else:
+                # Si no tiene anotaciones pero es un nodo inválido
+                if "invalida" in ast_node.tipo_nodo:
+                    lbl_ast.setStyleSheet("color: #FF9A9A; font-weight: bold; text-decoration: underline;")
+
+            layout_nodo.addStretch()
+            tree_widget.setItemWidget(item, 0, widget_nodo)
 
             # Llamada recursiva para procesar los hijos
             for hijo in ast_node.hijos:

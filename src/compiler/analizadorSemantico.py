@@ -13,16 +13,28 @@
 class TablaSimbolos:
     def __init__(self):
         self.simbolos = {}
+        self.contador_memoria = 1  # Simulador de dirección de memoria (1, 2, 3...)
 
-    def insertar(self, nombre, tipo_dato):
+    def insertar(self, nombre, tipo_dato, linea):
         if nombre in self.simbolos:
             return False
-        self.simbolos[nombre] = {'tipo': tipo_dato}
+        # Guardamos el tipo, la memoria asignada, y la primera línea donde nace
+        self.simbolos[nombre] = {
+            'tipo': tipo_dato,
+            'memoria': self.contador_memoria,
+            'lineas': [int(linea)] if linea != "-" else []
+        }
+        self.contador_memoria += 1
         return True
 
     def buscar(self, nombre):
         return self.simbolos.get(nombre, None)
 
+    def registrar_uso(self, nombre, linea):
+        """Añade la línea al historial permitiendo duplicados si se usa varias veces en la misma línea."""
+        if nombre in self.simbolos and linea != "-":
+            self.simbolos[nombre]['lineas'].append(int(linea))
+            self.simbolos[nombre]['lineas'].sort()  # Mantiene los números ordenados
 
 class AnalizadorSemantico:
     def __init__(self):
@@ -54,9 +66,11 @@ class AnalizadorSemantico:
             nodo_ids = nodo.hijos[1]
             for hijo_id in nodo_ids.hijos:
                 hijo_id.dtype = tipo_dato
-                exito = self.tabla_simbolos.insertar(hijo_id.valor, tipo_dato)
+                # PASAMOS LA LÍNEA AQUÍ
+                exito = self.tabla_simbolos.insertar(hijo_id.valor, tipo_dato, hijo_id.linea)
                 if not exito:
                     self.registrar_error(hijo_id, f"Declaración duplicada: '{hijo_id.valor}' ya fue declarada.")
+                    self.tabla_simbolos.registrar_uso(hijo_id.valor, hijo_id.linea)
             return
 
         # 2. RECORRIDO POSTORDEN (Visitar hijos primero)
@@ -76,6 +90,8 @@ class AnalizadorSemantico:
             simbolo = self.tabla_simbolos.buscar(nodo.valor)
             if simbolo:
                 nodo.type = simbolo['tipo']
+                # REGISTRAMOS EL USO DE LA VARIABLE EN ESTA LÍNEA
+                self.tabla_simbolos.registrar_uso(nodo.valor, nodo.linea)
             else:
                 nodo.type = "error"
                 self.registrar_error(nodo, f"Uso de variable no declarada '{nodo.valor}'.")

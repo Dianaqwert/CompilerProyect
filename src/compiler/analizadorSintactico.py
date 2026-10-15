@@ -315,5 +315,6 @@ def ejecutar_parser(codigo):
     global errores_sintacticos, codigo_fuente_actual
     errores_sintacticos = []
     codigo_fuente_actual = codigo
+    lexer.lineno = 1
     arbol = parser.parse(codigo, lexer=lexer)
     return arbol, errores_sintacticos

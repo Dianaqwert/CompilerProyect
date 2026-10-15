@@ -1,0 +1,3723 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BOOL_DECL
+    CASE
+    CHAR
+    ERR_DECIMAL
+    SHIFTL
+    SHIFTR
+    STRING
+    SWITCH
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> MAIN LBRACE lista_declaracion RBRACE
+Rule 2     programa -> lista_declaracion
+Rule 3     lista_declaracion -> lista_declaracion declaracion
+Rule 4     lista_declaracion -> declaracion
+Rule 5     declaracion -> declaracion_variable
+Rule 6     declaracion -> sentencia
+Rule 7     declaracion_variable -> tipo lista_ids SEMI
+Rule 8     tipo -> INT_DECL
+Rule 9     tipo -> FLOAT_DECL
+Rule 10    lista_ids -> ID COMMA lista_ids
+Rule 11    lista_ids -> ID
+Rule 12    sentencia -> asignacion
+Rule 13    sentencia -> seleccion
+Rule 14    sentencia -> iteracion
+Rule 15    sentencia -> repeticion
+Rule 16    sentencia -> sent_in
+Rule 17    sentencia -> sent_out
+Rule 18    sentencia -> inc_dec
+Rule 19    sentencia -> expresion_suelta
+Rule 20    sentencia -> error SEMI
+Rule 21    sentencia -> error RBRACE
+Rule 22    expresion_suelta -> expresion SEMI
+Rule 23    asignacion -> ID ASSIGN expresion SEMI
+Rule 24    seleccion -> IF expresion THEN lista_declaracion END SEMI
+Rule 25    seleccion -> IF expresion THEN lista_declaracion END
+Rule 26    seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+Rule 27    seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END
+Rule 28    iteracion -> WHILE expresion lista_declaracion END SEMI
+Rule 29    iteracion -> WHILE expresion lista_declaracion END
+Rule 30    repeticion -> DO lista_declaracion WHILE expresion SEMI
+Rule 31    repeticion -> DO lista_declaracion WHILE expresion
+Rule 32    repeticion -> DO lista_declaracion UNTIL expresion SEMI
+Rule 33    repeticion -> DO lista_declaracion UNTIL expresion
+Rule 34    sent_in -> CIN ID SEMI
+Rule 35    sent_out -> COUT expresion SEMI
+Rule 36    inc_dec -> ID INC SEMI
+Rule 37    inc_dec -> ID DEC SEMI
+Rule 38    expresion -> expresion_simple rel_op expresion_simple
+Rule 39    expresion -> expresion_simple
+Rule 40    rel_op -> LT
+Rule 41    rel_op -> LTE
+Rule 42    rel_op -> GT
+Rule 43    rel_op -> GTE
+Rule 44    rel_op -> EQ
+Rule 45    rel_op -> NE
+Rule 46    expresion_simple -> expresion_simple suma_op termino
+Rule 47    expresion_simple -> termino
+Rule 48    suma_op -> PLUS
+Rule 49    suma_op -> MINUS
+Rule 50    termino -> termino mult_op factor
+Rule 51    termino -> factor
+Rule 52    mult_op -> MULT
+Rule 53    mult_op -> DIV
+Rule 54    mult_op -> MOD
+Rule 55    factor -> componente POW componente
+Rule 56    factor -> componente
+Rule 57    componente -> LPAREN expresion RPAREN
+Rule 58    componente -> LPAREN error RPAREN
+Rule 59    componente -> NOT componente
+Rule 60    componente -> expresion log_op expresion
+Rule 61    log_op -> AND
+Rule 62    log_op -> OR
+Rule 63    componente -> INT
+Rule 64    componente -> REAL
+Rule 65    componente -> ID
+Rule 66    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 61
+ASSIGN               : 23
+BOOL_DECL            : 
+CASE                 : 
+CHAR                 : 
+CIN                  : 34
+COMMA                : 10
+COUT                 : 35
+DEC                  : 37
+DIV                  : 53
+DO                   : 30 31 32 33
+ELSE                 : 26 27
+END                  : 24 25 26 27 28 29
+EQ                   : 44
+ERR_DECIMAL          : 
+FLOAT_DECL           : 9
+GT                   : 42
+GTE                  : 43
+ID                   : 10 11 23 34 36 37 65
+IF                   : 24 25 26 27
+INC                  : 36
+INT                  : 63
+INT_DECL             : 8
+LBRACE               : 1
+LPAREN               : 57 58
+LT                   : 40
+LTE                  : 41
+MAIN                 : 1
+MINUS                : 49
+MOD                  : 54
+MULT                 : 52
+NE                   : 45
+NOT                  : 59
+OR                   : 62
+PLUS                 : 48
+POW                  : 55
+RBRACE               : 1 21
+REAL                 : 64
+RPAREN               : 57 58
+SEMI                 : 7 20 22 23 24 26 28 30 32 34 35 36 37
+SHIFTL               : 
+SHIFTR               : 
+STRING               : 
+SWITCH               : 
+THEN                 : 24 25 26 27
+UNTIL                : 32 33
+WHILE                : 28 29 30 31
+error                : 20 21 58
+
+Nonterminals, with rules where they appear
+
+asignacion           : 12
+componente           : 55 55 56 59
+declaracion          : 3 4
+declaracion_variable : 5
+empty                : 
+expresion            : 22 23 24 25 26 27 28 29 30 31 32 33 35 57 60 60
+expresion_simple     : 38 38 39 46
+expresion_suelta     : 19
+factor               : 50 51
+inc_dec              : 18
+iteracion            : 14
+lista_declaracion    : 1 2 3 24 25 26 26 27 27 28 29 30 31 32 33
+lista_ids            : 7 10
+log_op               : 60
+mult_op              : 50
+programa             : 0
+rel_op               : 38
+repeticion           : 15
+seleccion            : 13
+sent_in              : 16
+sent_out             : 17
+sentencia            : 6
+suma_op              : 46
+termino              : 46 47 50
+tipo                 : 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . MAIN LBRACE lista_declaracion RBRACE
+    (2) programa -> . lista_declaracion
+    (3) lista_declaracion -> . lista_declaracion declaracion
+    (4) lista_declaracion -> . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    MAIN            shift and go to state 2
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    programa                       shift and go to state 1
+    lista_declaracion              shift and go to state 3
+    declaracion                    shift and go to state 4
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion                      shift and go to state 20
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> MAIN . LBRACE lista_declaracion RBRACE
+
+    LBRACE          shift and go to state 34
+
+
+state 3
+
+    (2) programa -> lista_declaracion .
+    (3) lista_declaracion -> lista_declaracion . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    $end            reduce using rule 2 (programa -> lista_declaracion .)
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    declaracion                    shift and go to state 35
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion                      shift and go to state 20
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 4
+
+    (4) lista_declaracion -> declaracion .
+
+    error           reduce using rule 4 (lista_declaracion -> declaracion .)
+    INT_DECL        reduce using rule 4 (lista_declaracion -> declaracion .)
+    FLOAT_DECL      reduce using rule 4 (lista_declaracion -> declaracion .)
+    ID              reduce using rule 4 (lista_declaracion -> declaracion .)
+    IF              reduce using rule 4 (lista_declaracion -> declaracion .)
+    WHILE           reduce using rule 4 (lista_declaracion -> declaracion .)
+    DO              reduce using rule 4 (lista_declaracion -> declaracion .)
+    CIN             reduce using rule 4 (lista_declaracion -> declaracion .)
+    COUT            reduce using rule 4 (lista_declaracion -> declaracion .)
+    LPAREN          reduce using rule 4 (lista_declaracion -> declaracion .)
+    NOT             reduce using rule 4 (lista_declaracion -> declaracion .)
+    INT             reduce using rule 4 (lista_declaracion -> declaracion .)
+    REAL            reduce using rule 4 (lista_declaracion -> declaracion .)
+    $end            reduce using rule 4 (lista_declaracion -> declaracion .)
+    UNTIL           reduce using rule 4 (lista_declaracion -> declaracion .)
+    RBRACE          reduce using rule 4 (lista_declaracion -> declaracion .)
+    END             reduce using rule 4 (lista_declaracion -> declaracion .)
+    ELSE            reduce using rule 4 (lista_declaracion -> declaracion .)
+
+
+state 5
+
+    (5) declaracion -> declaracion_variable .
+
+    error           reduce using rule 5 (declaracion -> declaracion_variable .)
+    INT_DECL        reduce using rule 5 (declaracion -> declaracion_variable .)
+    FLOAT_DECL      reduce using rule 5 (declaracion -> declaracion_variable .)
+    ID              reduce using rule 5 (declaracion -> declaracion_variable .)
+    IF              reduce using rule 5 (declaracion -> declaracion_variable .)
+    WHILE           reduce using rule 5 (declaracion -> declaracion_variable .)
+    DO              reduce using rule 5 (declaracion -> declaracion_variable .)
+    CIN             reduce using rule 5 (declaracion -> declaracion_variable .)
+    COUT            reduce using rule 5 (declaracion -> declaracion_variable .)
+    LPAREN          reduce using rule 5 (declaracion -> declaracion_variable .)
+    NOT             reduce using rule 5 (declaracion -> declaracion_variable .)
+    INT             reduce using rule 5 (declaracion -> declaracion_variable .)
+    REAL            reduce using rule 5 (declaracion -> declaracion_variable .)
+    $end            reduce using rule 5 (declaracion -> declaracion_variable .)
+    UNTIL           reduce using rule 5 (declaracion -> declaracion_variable .)
+    RBRACE          reduce using rule 5 (declaracion -> declaracion_variable .)
+    END             reduce using rule 5 (declaracion -> declaracion_variable .)
+    ELSE            reduce using rule 5 (declaracion -> declaracion_variable .)
+
+
+state 6
+
+    (6) declaracion -> sentencia .
+
+    error           reduce using rule 6 (declaracion -> sentencia .)
+    INT_DECL        reduce using rule 6 (declaracion -> sentencia .)
+    FLOAT_DECL      reduce using rule 6 (declaracion -> sentencia .)
+    ID              reduce using rule 6 (declaracion -> sentencia .)
+    IF              reduce using rule 6 (declaracion -> sentencia .)
+    WHILE           reduce using rule 6 (declaracion -> sentencia .)
+    DO              reduce using rule 6 (declaracion -> sentencia .)
+    CIN             reduce using rule 6 (declaracion -> sentencia .)
+    COUT            reduce using rule 6 (declaracion -> sentencia .)
+    LPAREN          reduce using rule 6 (declaracion -> sentencia .)
+    NOT             reduce using rule 6 (declaracion -> sentencia .)
+    INT             reduce using rule 6 (declaracion -> sentencia .)
+    REAL            reduce using rule 6 (declaracion -> sentencia .)
+    $end            reduce using rule 6 (declaracion -> sentencia .)
+    UNTIL           reduce using rule 6 (declaracion -> sentencia .)
+    RBRACE          reduce using rule 6 (declaracion -> sentencia .)
+    END             reduce using rule 6 (declaracion -> sentencia .)
+    ELSE            reduce using rule 6 (declaracion -> sentencia .)
+
+
+state 7
+
+    (7) declaracion_variable -> tipo . lista_ids SEMI
+    (10) lista_ids -> . ID COMMA lista_ids
+    (11) lista_ids -> . ID
+
+    ID              shift and go to state 37
+
+    lista_ids                      shift and go to state 36
+
+state 8
+
+    (12) sentencia -> asignacion .
+
+    error           reduce using rule 12 (sentencia -> asignacion .)
+    INT_DECL        reduce using rule 12 (sentencia -> asignacion .)
+    FLOAT_DECL      reduce using rule 12 (sentencia -> asignacion .)
+    ID              reduce using rule 12 (sentencia -> asignacion .)
+    IF              reduce using rule 12 (sentencia -> asignacion .)
+    WHILE           reduce using rule 12 (sentencia -> asignacion .)
+    DO              reduce using rule 12 (sentencia -> asignacion .)
+    CIN             reduce using rule 12 (sentencia -> asignacion .)
+    COUT            reduce using rule 12 (sentencia -> asignacion .)
+    LPAREN          reduce using rule 12 (sentencia -> asignacion .)
+    NOT             reduce using rule 12 (sentencia -> asignacion .)
+    INT             reduce using rule 12 (sentencia -> asignacion .)
+    REAL            reduce using rule 12 (sentencia -> asignacion .)
+    $end            reduce using rule 12 (sentencia -> asignacion .)
+    UNTIL           reduce using rule 12 (sentencia -> asignacion .)
+    RBRACE          reduce using rule 12 (sentencia -> asignacion .)
+    END             reduce using rule 12 (sentencia -> asignacion .)
+    ELSE            reduce using rule 12 (sentencia -> asignacion .)
+
+
+state 9
+
+    (13) sentencia -> seleccion .
+
+    error           reduce using rule 13 (sentencia -> seleccion .)
+    INT_DECL        reduce using rule 13 (sentencia -> seleccion .)
+    FLOAT_DECL      reduce using rule 13 (sentencia -> seleccion .)
+    ID              reduce using rule 13 (sentencia -> seleccion .)
+    IF              reduce using rule 13 (sentencia -> seleccion .)
+    WHILE           reduce using rule 13 (sentencia -> seleccion .)
+    DO              reduce using rule 13 (sentencia -> seleccion .)
+    CIN             reduce using rule 13 (sentencia -> seleccion .)
+    COUT            reduce using rule 13 (sentencia -> seleccion .)
+    LPAREN          reduce using rule 13 (sentencia -> seleccion .)
+    NOT             reduce using rule 13 (sentencia -> seleccion .)
+    INT             reduce using rule 13 (sentencia -> seleccion .)
+    REAL            reduce using rule 13 (sentencia -> seleccion .)
+    $end            reduce using rule 13 (sentencia -> seleccion .)
+    UNTIL           reduce using rule 13 (sentencia -> seleccion .)
+    RBRACE          reduce using rule 13 (sentencia -> seleccion .)
+    END             reduce using rule 13 (sentencia -> seleccion .)
+    ELSE            reduce using rule 13 (sentencia -> seleccion .)
+
+
+state 10
+
+    (14) sentencia -> iteracion .
+
+    error           reduce using rule 14 (sentencia -> iteracion .)
+    INT_DECL        reduce using rule 14 (sentencia -> iteracion .)
+    FLOAT_DECL      reduce using rule 14 (sentencia -> iteracion .)
+    ID              reduce using rule 14 (sentencia -> iteracion .)
+    IF              reduce using rule 14 (sentencia -> iteracion .)
+    WHILE           reduce using rule 14 (sentencia -> iteracion .)
+    DO              reduce using rule 14 (sentencia -> iteracion .)
+    CIN             reduce using rule 14 (sentencia -> iteracion .)
+    COUT            reduce using rule 14 (sentencia -> iteracion .)
+    LPAREN          reduce using rule 14 (sentencia -> iteracion .)
+    NOT             reduce using rule 14 (sentencia -> iteracion .)
+    INT             reduce using rule 14 (sentencia -> iteracion .)
+    REAL            reduce using rule 14 (sentencia -> iteracion .)
+    $end            reduce using rule 14 (sentencia -> iteracion .)
+    UNTIL           reduce using rule 14 (sentencia -> iteracion .)
+    RBRACE          reduce using rule 14 (sentencia -> iteracion .)
+    END             reduce using rule 14 (sentencia -> iteracion .)
+    ELSE            reduce using rule 14 (sentencia -> iteracion .)
+
+
+state 11
+
+    (15) sentencia -> repeticion .
+
+    error           reduce using rule 15 (sentencia -> repeticion .)
+    INT_DECL        reduce using rule 15 (sentencia -> repeticion .)
+    FLOAT_DECL      reduce using rule 15 (sentencia -> repeticion .)
+    ID              reduce using rule 15 (sentencia -> repeticion .)
+    IF              reduce using rule 15 (sentencia -> repeticion .)
+    WHILE           reduce using rule 15 (sentencia -> repeticion .)
+    DO              reduce using rule 15 (sentencia -> repeticion .)
+    CIN             reduce using rule 15 (sentencia -> repeticion .)
+    COUT            reduce using rule 15 (sentencia -> repeticion .)
+    LPAREN          reduce using rule 15 (sentencia -> repeticion .)
+    NOT             reduce using rule 15 (sentencia -> repeticion .)
+    INT             reduce using rule 15 (sentencia -> repeticion .)
+    REAL            reduce using rule 15 (sentencia -> repeticion .)
+    $end            reduce using rule 15 (sentencia -> repeticion .)
+    UNTIL           reduce using rule 15 (sentencia -> repeticion .)
+    RBRACE          reduce using rule 15 (sentencia -> repeticion .)
+    END             reduce using rule 15 (sentencia -> repeticion .)
+    ELSE            reduce using rule 15 (sentencia -> repeticion .)
+
+
+state 12
+
+    (16) sentencia -> sent_in .
+
+    error           reduce using rule 16 (sentencia -> sent_in .)
+    INT_DECL        reduce using rule 16 (sentencia -> sent_in .)
+    FLOAT_DECL      reduce using rule 16 (sentencia -> sent_in .)
+    ID              reduce using rule 16 (sentencia -> sent_in .)
+    IF              reduce using rule 16 (sentencia -> sent_in .)
+    WHILE           reduce using rule 16 (sentencia -> sent_in .)
+    DO              reduce using rule 16 (sentencia -> sent_in .)
+    CIN             reduce using rule 16 (sentencia -> sent_in .)
+    COUT            reduce using rule 16 (sentencia -> sent_in .)
+    LPAREN          reduce using rule 16 (sentencia -> sent_in .)
+    NOT             reduce using rule 16 (sentencia -> sent_in .)
+    INT             reduce using rule 16 (sentencia -> sent_in .)
+    REAL            reduce using rule 16 (sentencia -> sent_in .)
+    $end            reduce using rule 16 (sentencia -> sent_in .)
+    UNTIL           reduce using rule 16 (sentencia -> sent_in .)
+    RBRACE          reduce using rule 16 (sentencia -> sent_in .)
+    END             reduce using rule 16 (sentencia -> sent_in .)
+    ELSE            reduce using rule 16 (sentencia -> sent_in .)
+
+
+state 13
+
+    (17) sentencia -> sent_out .
+
+    error           reduce using rule 17 (sentencia -> sent_out .)
+    INT_DECL        reduce using rule 17 (sentencia -> sent_out .)
+    FLOAT_DECL      reduce using rule 17 (sentencia -> sent_out .)
+    ID              reduce using rule 17 (sentencia -> sent_out .)
+    IF              reduce using rule 17 (sentencia -> sent_out .)
+    WHILE           reduce using rule 17 (sentencia -> sent_out .)
+    DO              reduce using rule 17 (sentencia -> sent_out .)
+    CIN             reduce using rule 17 (sentencia -> sent_out .)
+    COUT            reduce using rule 17 (sentencia -> sent_out .)
+    LPAREN          reduce using rule 17 (sentencia -> sent_out .)
+    NOT             reduce using rule 17 (sentencia -> sent_out .)
+    INT             reduce using rule 17 (sentencia -> sent_out .)
+    REAL            reduce using rule 17 (sentencia -> sent_out .)
+    $end            reduce using rule 17 (sentencia -> sent_out .)
+    UNTIL           reduce using rule 17 (sentencia -> sent_out .)
+    RBRACE          reduce using rule 17 (sentencia -> sent_out .)
+    END             reduce using rule 17 (sentencia -> sent_out .)
+    ELSE            reduce using rule 17 (sentencia -> sent_out .)
+
+
+state 14
+
+    (18) sentencia -> inc_dec .
+
+    error           reduce using rule 18 (sentencia -> inc_dec .)
+    INT_DECL        reduce using rule 18 (sentencia -> inc_dec .)
+    FLOAT_DECL      reduce using rule 18 (sentencia -> inc_dec .)
+    ID              reduce using rule 18 (sentencia -> inc_dec .)
+    IF              reduce using rule 18 (sentencia -> inc_dec .)
+    WHILE           reduce using rule 18 (sentencia -> inc_dec .)
+    DO              reduce using rule 18 (sentencia -> inc_dec .)
+    CIN             reduce using rule 18 (sentencia -> inc_dec .)
+    COUT            reduce using rule 18 (sentencia -> inc_dec .)
+    LPAREN          reduce using rule 18 (sentencia -> inc_dec .)
+    NOT             reduce using rule 18 (sentencia -> inc_dec .)
+    INT             reduce using rule 18 (sentencia -> inc_dec .)
+    REAL            reduce using rule 18 (sentencia -> inc_dec .)
+    $end            reduce using rule 18 (sentencia -> inc_dec .)
+    UNTIL           reduce using rule 18 (sentencia -> inc_dec .)
+    RBRACE          reduce using rule 18 (sentencia -> inc_dec .)
+    END             reduce using rule 18 (sentencia -> inc_dec .)
+    ELSE            reduce using rule 18 (sentencia -> inc_dec .)
+
+
+state 15
+
+    (19) sentencia -> expresion_suelta .
+
+    error           reduce using rule 19 (sentencia -> expresion_suelta .)
+    INT_DECL        reduce using rule 19 (sentencia -> expresion_suelta .)
+    FLOAT_DECL      reduce using rule 19 (sentencia -> expresion_suelta .)
+    ID              reduce using rule 19 (sentencia -> expresion_suelta .)
+    IF              reduce using rule 19 (sentencia -> expresion_suelta .)
+    WHILE           reduce using rule 19 (sentencia -> expresion_suelta .)
+    DO              reduce using rule 19 (sentencia -> expresion_suelta .)
+    CIN             reduce using rule 19 (sentencia -> expresion_suelta .)
+    COUT            reduce using rule 19 (sentencia -> expresion_suelta .)
+    LPAREN          reduce using rule 19 (sentencia -> expresion_suelta .)
+    NOT             reduce using rule 19 (sentencia -> expresion_suelta .)
+    INT             reduce using rule 19 (sentencia -> expresion_suelta .)
+    REAL            reduce using rule 19 (sentencia -> expresion_suelta .)
+    $end            reduce using rule 19 (sentencia -> expresion_suelta .)
+    UNTIL           reduce using rule 19 (sentencia -> expresion_suelta .)
+    RBRACE          reduce using rule 19 (sentencia -> expresion_suelta .)
+    END             reduce using rule 19 (sentencia -> expresion_suelta .)
+    ELSE            reduce using rule 19 (sentencia -> expresion_suelta .)
+
+
+state 16
+
+    (20) sentencia -> error . SEMI
+    (21) sentencia -> error . RBRACE
+
+    SEMI            shift and go to state 38
+    RBRACE          shift and go to state 39
+
+
+state 17
+
+    (8) tipo -> INT_DECL .
+
+    ID              reduce using rule 8 (tipo -> INT_DECL .)
+
+
+state 18
+
+    (9) tipo -> FLOAT_DECL .
+
+    ID              reduce using rule 9 (tipo -> FLOAT_DECL .)
+
+
+state 19
+
+    (23) asignacion -> ID . ASSIGN expresion SEMI
+    (36) inc_dec -> ID . INC SEMI
+    (37) inc_dec -> ID . DEC SEMI
+    (65) componente -> ID .
+
+    ASSIGN          shift and go to state 40
+    INC             shift and go to state 41
+    DEC             shift and go to state 42
+    POW             reduce using rule 65 (componente -> ID .)
+    MULT            reduce using rule 65 (componente -> ID .)
+    DIV             reduce using rule 65 (componente -> ID .)
+    MOD             reduce using rule 65 (componente -> ID .)
+    LT              reduce using rule 65 (componente -> ID .)
+    LTE             reduce using rule 65 (componente -> ID .)
+    GT              reduce using rule 65 (componente -> ID .)
+    GTE             reduce using rule 65 (componente -> ID .)
+    EQ              reduce using rule 65 (componente -> ID .)
+    NE              reduce using rule 65 (componente -> ID .)
+    PLUS            reduce using rule 65 (componente -> ID .)
+    MINUS           reduce using rule 65 (componente -> ID .)
+    SEMI            reduce using rule 65 (componente -> ID .)
+    AND             reduce using rule 65 (componente -> ID .)
+    OR              reduce using rule 65 (componente -> ID .)
+
+
+state 20
+
+    (22) expresion_suelta -> expresion . SEMI
+    (60) componente -> expresion . log_op expresion
+    (61) log_op -> . AND
+    (62) log_op -> . OR
+
+    SEMI            shift and go to state 43
+    AND             shift and go to state 45
+    OR              shift and go to state 46
+
+    log_op                         shift and go to state 44
+
+state 21
+
+    (24) seleccion -> IF . expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> IF . expresion THEN lista_declaracion END
+    (26) seleccion -> IF . expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> IF . expresion THEN lista_declaracion ELSE lista_declaracion END
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    expresion                      shift and go to state 47
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 22
+
+    (28) iteracion -> WHILE . expresion lista_declaracion END SEMI
+    (29) iteracion -> WHILE . expresion lista_declaracion END
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    expresion                      shift and go to state 49
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 23
+
+    (30) repeticion -> DO . lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> DO . lista_declaracion WHILE expresion
+    (32) repeticion -> DO . lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> DO . lista_declaracion UNTIL expresion
+    (3) lista_declaracion -> . lista_declaracion declaracion
+    (4) lista_declaracion -> . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    lista_declaracion              shift and go to state 50
+    expresion                      shift and go to state 20
+    declaracion                    shift and go to state 4
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 24
+
+    (34) sent_in -> CIN . ID SEMI
+
+    ID              shift and go to state 51
+
+
+state 25
+
+    (35) sent_out -> COUT . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    expresion                      shift and go to state 52
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 26
+
+    (38) expresion -> expresion_simple . rel_op expresion_simple
+    (39) expresion -> expresion_simple .
+    (46) expresion_simple -> expresion_simple . suma_op termino
+    (40) rel_op -> . LT
+    (41) rel_op -> . LTE
+    (42) rel_op -> . GT
+    (43) rel_op -> . GTE
+    (44) rel_op -> . EQ
+    (45) rel_op -> . NE
+    (48) suma_op -> . PLUS
+    (49) suma_op -> . MINUS
+
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+    SEMI            reduce using rule 39 (expresion -> expresion_simple .)
+    AND             reduce using rule 39 (expresion -> expresion_simple .)
+    OR              reduce using rule 39 (expresion -> expresion_simple .)
+    THEN            reduce using rule 39 (expresion -> expresion_simple .)
+    error           reduce using rule 39 (expresion -> expresion_simple .)
+    INT_DECL        reduce using rule 39 (expresion -> expresion_simple .)
+    FLOAT_DECL      reduce using rule 39 (expresion -> expresion_simple .)
+    ID              reduce using rule 39 (expresion -> expresion_simple .)
+    IF              reduce using rule 39 (expresion -> expresion_simple .)
+    WHILE           reduce using rule 39 (expresion -> expresion_simple .)
+    DO              reduce using rule 39 (expresion -> expresion_simple .)
+    CIN             reduce using rule 39 (expresion -> expresion_simple .)
+    COUT            reduce using rule 39 (expresion -> expresion_simple .)
+    LPAREN          reduce using rule 39 (expresion -> expresion_simple .)
+    NOT             reduce using rule 39 (expresion -> expresion_simple .)
+    INT             reduce using rule 39 (expresion -> expresion_simple .)
+    REAL            reduce using rule 39 (expresion -> expresion_simple .)
+    RPAREN          reduce using rule 39 (expresion -> expresion_simple .)
+    POW             reduce using rule 39 (expresion -> expresion_simple .)
+    MULT            reduce using rule 39 (expresion -> expresion_simple .)
+    DIV             reduce using rule 39 (expresion -> expresion_simple .)
+    MOD             reduce using rule 39 (expresion -> expresion_simple .)
+    $end            reduce using rule 39 (expresion -> expresion_simple .)
+    UNTIL           reduce using rule 39 (expresion -> expresion_simple .)
+    RBRACE          reduce using rule 39 (expresion -> expresion_simple .)
+    END             reduce using rule 39 (expresion -> expresion_simple .)
+    ELSE            reduce using rule 39 (expresion -> expresion_simple .)
+    LT              shift and go to state 55
+    LTE             shift and go to state 56
+    GT              shift and go to state 57
+    GTE             shift and go to state 58
+    EQ              shift and go to state 59
+    NE              shift and go to state 60
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+
+  ! LT              [ reduce using rule 39 (expresion -> expresion_simple .) ]
+  ! LTE             [ reduce using rule 39 (expresion -> expresion_simple .) ]
+  ! GT              [ reduce using rule 39 (expresion -> expresion_simple .) ]
+  ! GTE             [ reduce using rule 39 (expresion -> expresion_simple .) ]
+  ! EQ              [ reduce using rule 39 (expresion -> expresion_simple .) ]
+  ! NE              [ reduce using rule 39 (expresion -> expresion_simple .) ]
+  ! PLUS            [ reduce using rule 39 (expresion -> expresion_simple .) ]
+  ! MINUS           [ reduce using rule 39 (expresion -> expresion_simple .) ]
+
+    rel_op                         shift and go to state 53
+    suma_op                        shift and go to state 54
+
+state 27
+
+    (47) expresion_simple -> termino .
+    (50) termino -> termino . mult_op factor
+    (52) mult_op -> . MULT
+    (53) mult_op -> . DIV
+    (54) mult_op -> . MOD
+
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+    LT              reduce using rule 47 (expresion_simple -> termino .)
+    LTE             reduce using rule 47 (expresion_simple -> termino .)
+    GT              reduce using rule 47 (expresion_simple -> termino .)
+    GTE             reduce using rule 47 (expresion_simple -> termino .)
+    EQ              reduce using rule 47 (expresion_simple -> termino .)
+    NE              reduce using rule 47 (expresion_simple -> termino .)
+    PLUS            reduce using rule 47 (expresion_simple -> termino .)
+    MINUS           reduce using rule 47 (expresion_simple -> termino .)
+    SEMI            reduce using rule 47 (expresion_simple -> termino .)
+    AND             reduce using rule 47 (expresion_simple -> termino .)
+    OR              reduce using rule 47 (expresion_simple -> termino .)
+    THEN            reduce using rule 47 (expresion_simple -> termino .)
+    error           reduce using rule 47 (expresion_simple -> termino .)
+    INT_DECL        reduce using rule 47 (expresion_simple -> termino .)
+    FLOAT_DECL      reduce using rule 47 (expresion_simple -> termino .)
+    ID              reduce using rule 47 (expresion_simple -> termino .)
+    IF              reduce using rule 47 (expresion_simple -> termino .)
+    WHILE           reduce using rule 47 (expresion_simple -> termino .)
+    DO              reduce using rule 47 (expresion_simple -> termino .)
+    CIN             reduce using rule 47 (expresion_simple -> termino .)
+    COUT            reduce using rule 47 (expresion_simple -> termino .)
+    LPAREN          reduce using rule 47 (expresion_simple -> termino .)
+    NOT             reduce using rule 47 (expresion_simple -> termino .)
+    INT             reduce using rule 47 (expresion_simple -> termino .)
+    REAL            reduce using rule 47 (expresion_simple -> termino .)
+    RPAREN          reduce using rule 47 (expresion_simple -> termino .)
+    POW             reduce using rule 47 (expresion_simple -> termino .)
+    $end            reduce using rule 47 (expresion_simple -> termino .)
+    UNTIL           reduce using rule 47 (expresion_simple -> termino .)
+    RBRACE          reduce using rule 47 (expresion_simple -> termino .)
+    END             reduce using rule 47 (expresion_simple -> termino .)
+    ELSE            reduce using rule 47 (expresion_simple -> termino .)
+    MULT            shift and go to state 64
+    DIV             shift and go to state 65
+    MOD             shift and go to state 66
+
+  ! MULT            [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! DIV             [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! MOD             [ reduce using rule 47 (expresion_simple -> termino .) ]
+
+    mult_op                        shift and go to state 63
+
+state 28
+
+    (51) termino -> factor .
+
+    MULT            reduce using rule 51 (termino -> factor .)
+    DIV             reduce using rule 51 (termino -> factor .)
+    MOD             reduce using rule 51 (termino -> factor .)
+    LT              reduce using rule 51 (termino -> factor .)
+    LTE             reduce using rule 51 (termino -> factor .)
+    GT              reduce using rule 51 (termino -> factor .)
+    GTE             reduce using rule 51 (termino -> factor .)
+    EQ              reduce using rule 51 (termino -> factor .)
+    NE              reduce using rule 51 (termino -> factor .)
+    PLUS            reduce using rule 51 (termino -> factor .)
+    MINUS           reduce using rule 51 (termino -> factor .)
+    SEMI            reduce using rule 51 (termino -> factor .)
+    AND             reduce using rule 51 (termino -> factor .)
+    OR              reduce using rule 51 (termino -> factor .)
+    THEN            reduce using rule 51 (termino -> factor .)
+    error           reduce using rule 51 (termino -> factor .)
+    INT_DECL        reduce using rule 51 (termino -> factor .)
+    FLOAT_DECL      reduce using rule 51 (termino -> factor .)
+    ID              reduce using rule 51 (termino -> factor .)
+    IF              reduce using rule 51 (termino -> factor .)
+    WHILE           reduce using rule 51 (termino -> factor .)
+    DO              reduce using rule 51 (termino -> factor .)
+    CIN             reduce using rule 51 (termino -> factor .)
+    COUT            reduce using rule 51 (termino -> factor .)
+    LPAREN          reduce using rule 51 (termino -> factor .)
+    NOT             reduce using rule 51 (termino -> factor .)
+    INT             reduce using rule 51 (termino -> factor .)
+    REAL            reduce using rule 51 (termino -> factor .)
+    RPAREN          reduce using rule 51 (termino -> factor .)
+    POW             reduce using rule 51 (termino -> factor .)
+    $end            reduce using rule 51 (termino -> factor .)
+    UNTIL           reduce using rule 51 (termino -> factor .)
+    RBRACE          reduce using rule 51 (termino -> factor .)
+    END             reduce using rule 51 (termino -> factor .)
+    ELSE            reduce using rule 51 (termino -> factor .)
+
+
+state 29
+
+    (55) factor -> componente . POW componente
+    (56) factor -> componente .
+
+  ! shift/reduce conflict for POW resolved as shift
+    POW             shift and go to state 67
+    MULT            reduce using rule 56 (factor -> componente .)
+    DIV             reduce using rule 56 (factor -> componente .)
+    MOD             reduce using rule 56 (factor -> componente .)
+    LT              reduce using rule 56 (factor -> componente .)
+    LTE             reduce using rule 56 (factor -> componente .)
+    GT              reduce using rule 56 (factor -> componente .)
+    GTE             reduce using rule 56 (factor -> componente .)
+    EQ              reduce using rule 56 (factor -> componente .)
+    NE              reduce using rule 56 (factor -> componente .)
+    PLUS            reduce using rule 56 (factor -> componente .)
+    MINUS           reduce using rule 56 (factor -> componente .)
+    SEMI            reduce using rule 56 (factor -> componente .)
+    AND             reduce using rule 56 (factor -> componente .)
+    OR              reduce using rule 56 (factor -> componente .)
+    THEN            reduce using rule 56 (factor -> componente .)
+    error           reduce using rule 56 (factor -> componente .)
+    INT_DECL        reduce using rule 56 (factor -> componente .)
+    FLOAT_DECL      reduce using rule 56 (factor -> componente .)
+    ID              reduce using rule 56 (factor -> componente .)
+    IF              reduce using rule 56 (factor -> componente .)
+    WHILE           reduce using rule 56 (factor -> componente .)
+    DO              reduce using rule 56 (factor -> componente .)
+    CIN             reduce using rule 56 (factor -> componente .)
+    COUT            reduce using rule 56 (factor -> componente .)
+    LPAREN          reduce using rule 56 (factor -> componente .)
+    NOT             reduce using rule 56 (factor -> componente .)
+    INT             reduce using rule 56 (factor -> componente .)
+    REAL            reduce using rule 56 (factor -> componente .)
+    RPAREN          reduce using rule 56 (factor -> componente .)
+    $end            reduce using rule 56 (factor -> componente .)
+    UNTIL           reduce using rule 56 (factor -> componente .)
+    RBRACE          reduce using rule 56 (factor -> componente .)
+    END             reduce using rule 56 (factor -> componente .)
+    ELSE            reduce using rule 56 (factor -> componente .)
+
+  ! POW             [ reduce using rule 56 (factor -> componente .) ]
+
+
+state 30
+
+    (57) componente -> LPAREN . expresion RPAREN
+    (58) componente -> LPAREN . error RPAREN
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    error           shift and go to state 69
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    expresion                      shift and go to state 68
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 31
+
+    (59) componente -> NOT . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    componente                     shift and go to state 70
+    expresion                      shift and go to state 71
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+
+state 32
+
+    (63) componente -> INT .
+
+    POW             reduce using rule 63 (componente -> INT .)
+    MULT            reduce using rule 63 (componente -> INT .)
+    DIV             reduce using rule 63 (componente -> INT .)
+    MOD             reduce using rule 63 (componente -> INT .)
+    LT              reduce using rule 63 (componente -> INT .)
+    LTE             reduce using rule 63 (componente -> INT .)
+    GT              reduce using rule 63 (componente -> INT .)
+    GTE             reduce using rule 63 (componente -> INT .)
+    EQ              reduce using rule 63 (componente -> INT .)
+    NE              reduce using rule 63 (componente -> INT .)
+    PLUS            reduce using rule 63 (componente -> INT .)
+    MINUS           reduce using rule 63 (componente -> INT .)
+    SEMI            reduce using rule 63 (componente -> INT .)
+    AND             reduce using rule 63 (componente -> INT .)
+    OR              reduce using rule 63 (componente -> INT .)
+    THEN            reduce using rule 63 (componente -> INT .)
+    error           reduce using rule 63 (componente -> INT .)
+    INT_DECL        reduce using rule 63 (componente -> INT .)
+    FLOAT_DECL      reduce using rule 63 (componente -> INT .)
+    ID              reduce using rule 63 (componente -> INT .)
+    IF              reduce using rule 63 (componente -> INT .)
+    WHILE           reduce using rule 63 (componente -> INT .)
+    DO              reduce using rule 63 (componente -> INT .)
+    CIN             reduce using rule 63 (componente -> INT .)
+    COUT            reduce using rule 63 (componente -> INT .)
+    LPAREN          reduce using rule 63 (componente -> INT .)
+    NOT             reduce using rule 63 (componente -> INT .)
+    INT             reduce using rule 63 (componente -> INT .)
+    REAL            reduce using rule 63 (componente -> INT .)
+    RPAREN          reduce using rule 63 (componente -> INT .)
+    $end            reduce using rule 63 (componente -> INT .)
+    UNTIL           reduce using rule 63 (componente -> INT .)
+    RBRACE          reduce using rule 63 (componente -> INT .)
+    END             reduce using rule 63 (componente -> INT .)
+    ELSE            reduce using rule 63 (componente -> INT .)
+
+
+state 33
+
+    (64) componente -> REAL .
+
+    POW             reduce using rule 64 (componente -> REAL .)
+    MULT            reduce using rule 64 (componente -> REAL .)
+    DIV             reduce using rule 64 (componente -> REAL .)
+    MOD             reduce using rule 64 (componente -> REAL .)
+    LT              reduce using rule 64 (componente -> REAL .)
+    LTE             reduce using rule 64 (componente -> REAL .)
+    GT              reduce using rule 64 (componente -> REAL .)
+    GTE             reduce using rule 64 (componente -> REAL .)
+    EQ              reduce using rule 64 (componente -> REAL .)
+    NE              reduce using rule 64 (componente -> REAL .)
+    PLUS            reduce using rule 64 (componente -> REAL .)
+    MINUS           reduce using rule 64 (componente -> REAL .)
+    SEMI            reduce using rule 64 (componente -> REAL .)
+    AND             reduce using rule 64 (componente -> REAL .)
+    OR              reduce using rule 64 (componente -> REAL .)
+    THEN            reduce using rule 64 (componente -> REAL .)
+    error           reduce using rule 64 (componente -> REAL .)
+    INT_DECL        reduce using rule 64 (componente -> REAL .)
+    FLOAT_DECL      reduce using rule 64 (componente -> REAL .)
+    ID              reduce using rule 64 (componente -> REAL .)
+    IF              reduce using rule 64 (componente -> REAL .)
+    WHILE           reduce using rule 64 (componente -> REAL .)
+    DO              reduce using rule 64 (componente -> REAL .)
+    CIN             reduce using rule 64 (componente -> REAL .)
+    COUT            reduce using rule 64 (componente -> REAL .)
+    LPAREN          reduce using rule 64 (componente -> REAL .)
+    NOT             reduce using rule 64 (componente -> REAL .)
+    INT             reduce using rule 64 (componente -> REAL .)
+    REAL            reduce using rule 64 (componente -> REAL .)
+    RPAREN          reduce using rule 64 (componente -> REAL .)
+    $end            reduce using rule 64 (componente -> REAL .)
+    UNTIL           reduce using rule 64 (componente -> REAL .)
+    RBRACE          reduce using rule 64 (componente -> REAL .)
+    END             reduce using rule 64 (componente -> REAL .)
+    ELSE            reduce using rule 64 (componente -> REAL .)
+
+
+state 34
+
+    (1) programa -> MAIN LBRACE . lista_declaracion RBRACE
+    (3) lista_declaracion -> . lista_declaracion declaracion
+    (4) lista_declaracion -> . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    lista_declaracion              shift and go to state 72
+    declaracion                    shift and go to state 4
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion                      shift and go to state 20
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 35
+
+    (3) lista_declaracion -> lista_declaracion declaracion .
+
+    error           reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    INT_DECL        reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    FLOAT_DECL      reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    ID              reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    IF              reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    WHILE           reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    DO              reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    CIN             reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    COUT            reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    LPAREN          reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    NOT             reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    INT             reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    REAL            reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    $end            reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    UNTIL           reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    RBRACE          reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    END             reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+    ELSE            reduce using rule 3 (lista_declaracion -> lista_declaracion declaracion .)
+
+
+state 36
+
+    (7) declaracion_variable -> tipo lista_ids . SEMI
+
+    SEMI            shift and go to state 73
+
+
+state 37
+
+    (10) lista_ids -> ID . COMMA lista_ids
+    (11) lista_ids -> ID .
+
+    COMMA           shift and go to state 74
+    SEMI            reduce using rule 11 (lista_ids -> ID .)
+
+
+state 38
+
+    (20) sentencia -> error SEMI .
+
+    error           reduce using rule 20 (sentencia -> error SEMI .)
+    INT_DECL        reduce using rule 20 (sentencia -> error SEMI .)
+    FLOAT_DECL      reduce using rule 20 (sentencia -> error SEMI .)
+    ID              reduce using rule 20 (sentencia -> error SEMI .)
+    IF              reduce using rule 20 (sentencia -> error SEMI .)
+    WHILE           reduce using rule 20 (sentencia -> error SEMI .)
+    DO              reduce using rule 20 (sentencia -> error SEMI .)
+    CIN             reduce using rule 20 (sentencia -> error SEMI .)
+    COUT            reduce using rule 20 (sentencia -> error SEMI .)
+    LPAREN          reduce using rule 20 (sentencia -> error SEMI .)
+    NOT             reduce using rule 20 (sentencia -> error SEMI .)
+    INT             reduce using rule 20 (sentencia -> error SEMI .)
+    REAL            reduce using rule 20 (sentencia -> error SEMI .)
+    $end            reduce using rule 20 (sentencia -> error SEMI .)
+    UNTIL           reduce using rule 20 (sentencia -> error SEMI .)
+    RBRACE          reduce using rule 20 (sentencia -> error SEMI .)
+    END             reduce using rule 20 (sentencia -> error SEMI .)
+    ELSE            reduce using rule 20 (sentencia -> error SEMI .)
+
+
+state 39
+
+    (21) sentencia -> error RBRACE .
+
+    error           reduce using rule 21 (sentencia -> error RBRACE .)
+    INT_DECL        reduce using rule 21 (sentencia -> error RBRACE .)
+    FLOAT_DECL      reduce using rule 21 (sentencia -> error RBRACE .)
+    ID              reduce using rule 21 (sentencia -> error RBRACE .)
+    IF              reduce using rule 21 (sentencia -> error RBRACE .)
+    WHILE           reduce using rule 21 (sentencia -> error RBRACE .)
+    DO              reduce using rule 21 (sentencia -> error RBRACE .)
+    CIN             reduce using rule 21 (sentencia -> error RBRACE .)
+    COUT            reduce using rule 21 (sentencia -> error RBRACE .)
+    LPAREN          reduce using rule 21 (sentencia -> error RBRACE .)
+    NOT             reduce using rule 21 (sentencia -> error RBRACE .)
+    INT             reduce using rule 21 (sentencia -> error RBRACE .)
+    REAL            reduce using rule 21 (sentencia -> error RBRACE .)
+    $end            reduce using rule 21 (sentencia -> error RBRACE .)
+    UNTIL           reduce using rule 21 (sentencia -> error RBRACE .)
+    RBRACE          reduce using rule 21 (sentencia -> error RBRACE .)
+    END             reduce using rule 21 (sentencia -> error RBRACE .)
+    ELSE            reduce using rule 21 (sentencia -> error RBRACE .)
+
+
+state 40
+
+    (23) asignacion -> ID ASSIGN . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    expresion                      shift and go to state 75
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 41
+
+    (36) inc_dec -> ID INC . SEMI
+
+    SEMI            shift and go to state 76
+
+
+state 42
+
+    (37) inc_dec -> ID DEC . SEMI
+
+    SEMI            shift and go to state 77
+
+
+state 43
+
+    (22) expresion_suelta -> expresion SEMI .
+
+    error           reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    INT_DECL        reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    FLOAT_DECL      reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    ID              reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    IF              reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    WHILE           reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    DO              reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    CIN             reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    COUT            reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    LPAREN          reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    NOT             reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    INT             reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    REAL            reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    $end            reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    UNTIL           reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    RBRACE          reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    END             reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+    ELSE            reduce using rule 22 (expresion_suelta -> expresion SEMI .)
+
+
+state 44
+
+    (60) componente -> expresion log_op . expresion
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    expresion                      shift and go to state 78
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 45
+
+    (61) log_op -> AND .
+
+    LPAREN          reduce using rule 61 (log_op -> AND .)
+    NOT             reduce using rule 61 (log_op -> AND .)
+    INT             reduce using rule 61 (log_op -> AND .)
+    REAL            reduce using rule 61 (log_op -> AND .)
+    ID              reduce using rule 61 (log_op -> AND .)
+
+
+state 46
+
+    (62) log_op -> OR .
+
+    LPAREN          reduce using rule 62 (log_op -> OR .)
+    NOT             reduce using rule 62 (log_op -> OR .)
+    INT             reduce using rule 62 (log_op -> OR .)
+    REAL            reduce using rule 62 (log_op -> OR .)
+    ID              reduce using rule 62 (log_op -> OR .)
+
+
+state 47
+
+    (24) seleccion -> IF expresion . THEN lista_declaracion END SEMI
+    (25) seleccion -> IF expresion . THEN lista_declaracion END
+    (26) seleccion -> IF expresion . THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> IF expresion . THEN lista_declaracion ELSE lista_declaracion END
+    (60) componente -> expresion . log_op expresion
+    (61) log_op -> . AND
+    (62) log_op -> . OR
+
+    THEN            shift and go to state 79
+    AND             shift and go to state 45
+    OR              shift and go to state 46
+
+    log_op                         shift and go to state 44
+
+state 48
+
+    (65) componente -> ID .
+
+    POW             reduce using rule 65 (componente -> ID .)
+    MULT            reduce using rule 65 (componente -> ID .)
+    DIV             reduce using rule 65 (componente -> ID .)
+    MOD             reduce using rule 65 (componente -> ID .)
+    LT              reduce using rule 65 (componente -> ID .)
+    LTE             reduce using rule 65 (componente -> ID .)
+    GT              reduce using rule 65 (componente -> ID .)
+    GTE             reduce using rule 65 (componente -> ID .)
+    EQ              reduce using rule 65 (componente -> ID .)
+    NE              reduce using rule 65 (componente -> ID .)
+    PLUS            reduce using rule 65 (componente -> ID .)
+    MINUS           reduce using rule 65 (componente -> ID .)
+    THEN            reduce using rule 65 (componente -> ID .)
+    AND             reduce using rule 65 (componente -> ID .)
+    OR              reduce using rule 65 (componente -> ID .)
+    error           reduce using rule 65 (componente -> ID .)
+    INT_DECL        reduce using rule 65 (componente -> ID .)
+    FLOAT_DECL      reduce using rule 65 (componente -> ID .)
+    ID              reduce using rule 65 (componente -> ID .)
+    IF              reduce using rule 65 (componente -> ID .)
+    WHILE           reduce using rule 65 (componente -> ID .)
+    DO              reduce using rule 65 (componente -> ID .)
+    CIN             reduce using rule 65 (componente -> ID .)
+    COUT            reduce using rule 65 (componente -> ID .)
+    LPAREN          reduce using rule 65 (componente -> ID .)
+    NOT             reduce using rule 65 (componente -> ID .)
+    INT             reduce using rule 65 (componente -> ID .)
+    REAL            reduce using rule 65 (componente -> ID .)
+    SEMI            reduce using rule 65 (componente -> ID .)
+    RPAREN          reduce using rule 65 (componente -> ID .)
+    $end            reduce using rule 65 (componente -> ID .)
+    UNTIL           reduce using rule 65 (componente -> ID .)
+    RBRACE          reduce using rule 65 (componente -> ID .)
+    END             reduce using rule 65 (componente -> ID .)
+    ELSE            reduce using rule 65 (componente -> ID .)
+
+
+state 49
+
+    (28) iteracion -> WHILE expresion . lista_declaracion END SEMI
+    (29) iteracion -> WHILE expresion . lista_declaracion END
+    (60) componente -> expresion . log_op expresion
+    (3) lista_declaracion -> . lista_declaracion declaracion
+    (4) lista_declaracion -> . declaracion
+    (61) log_op -> . AND
+    (62) log_op -> . OR
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    AND             shift and go to state 45
+    OR              shift and go to state 46
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    expresion                      shift and go to state 20
+    lista_declaracion              shift and go to state 80
+    log_op                         shift and go to state 44
+    declaracion                    shift and go to state 4
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 50
+
+    (30) repeticion -> DO lista_declaracion . WHILE expresion SEMI
+    (31) repeticion -> DO lista_declaracion . WHILE expresion
+    (32) repeticion -> DO lista_declaracion . UNTIL expresion SEMI
+    (33) repeticion -> DO lista_declaracion . UNTIL expresion
+    (3) lista_declaracion -> lista_declaracion . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    WHILE           shift and go to state 81
+    UNTIL           shift and go to state 82
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    expresion                      shift and go to state 20
+    declaracion                    shift and go to state 35
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 51
+
+    (34) sent_in -> CIN ID . SEMI
+
+    SEMI            shift and go to state 83
+
+
+state 52
+
+    (35) sent_out -> COUT expresion . SEMI
+    (60) componente -> expresion . log_op expresion
+    (61) log_op -> . AND
+    (62) log_op -> . OR
+
+    SEMI            shift and go to state 84
+    AND             shift and go to state 45
+    OR              shift and go to state 46
+
+    log_op                         shift and go to state 44
+
+state 53
+
+    (38) expresion -> expresion_simple rel_op . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    expresion_simple               shift and go to state 85
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+    expresion                      shift and go to state 71
+
+state 54
+
+    (46) expresion_simple -> expresion_simple suma_op . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 86
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+    expresion                      shift and go to state 71
+
+state 55
+
+    (40) rel_op -> LT .
+
+    LPAREN          reduce using rule 40 (rel_op -> LT .)
+    NOT             reduce using rule 40 (rel_op -> LT .)
+    INT             reduce using rule 40 (rel_op -> LT .)
+    REAL            reduce using rule 40 (rel_op -> LT .)
+    ID              reduce using rule 40 (rel_op -> LT .)
+
+
+state 56
+
+    (41) rel_op -> LTE .
+
+    LPAREN          reduce using rule 41 (rel_op -> LTE .)
+    NOT             reduce using rule 41 (rel_op -> LTE .)
+    INT             reduce using rule 41 (rel_op -> LTE .)
+    REAL            reduce using rule 41 (rel_op -> LTE .)
+    ID              reduce using rule 41 (rel_op -> LTE .)
+
+
+state 57
+
+    (42) rel_op -> GT .
+
+    LPAREN          reduce using rule 42 (rel_op -> GT .)
+    NOT             reduce using rule 42 (rel_op -> GT .)
+    INT             reduce using rule 42 (rel_op -> GT .)
+    REAL            reduce using rule 42 (rel_op -> GT .)
+    ID              reduce using rule 42 (rel_op -> GT .)
+
+
+state 58
+
+    (43) rel_op -> GTE .
+
+    LPAREN          reduce using rule 43 (rel_op -> GTE .)
+    NOT             reduce using rule 43 (rel_op -> GTE .)
+    INT             reduce using rule 43 (rel_op -> GTE .)
+    REAL            reduce using rule 43 (rel_op -> GTE .)
+    ID              reduce using rule 43 (rel_op -> GTE .)
+
+
+state 59
+
+    (44) rel_op -> EQ .
+
+    LPAREN          reduce using rule 44 (rel_op -> EQ .)
+    NOT             reduce using rule 44 (rel_op -> EQ .)
+    INT             reduce using rule 44 (rel_op -> EQ .)
+    REAL            reduce using rule 44 (rel_op -> EQ .)
+    ID              reduce using rule 44 (rel_op -> EQ .)
+
+
+state 60
+
+    (45) rel_op -> NE .
+
+    LPAREN          reduce using rule 45 (rel_op -> NE .)
+    NOT             reduce using rule 45 (rel_op -> NE .)
+    INT             reduce using rule 45 (rel_op -> NE .)
+    REAL            reduce using rule 45 (rel_op -> NE .)
+    ID              reduce using rule 45 (rel_op -> NE .)
+
+
+state 61
+
+    (48) suma_op -> PLUS .
+
+    LPAREN          reduce using rule 48 (suma_op -> PLUS .)
+    NOT             reduce using rule 48 (suma_op -> PLUS .)
+    INT             reduce using rule 48 (suma_op -> PLUS .)
+    REAL            reduce using rule 48 (suma_op -> PLUS .)
+    ID              reduce using rule 48 (suma_op -> PLUS .)
+
+
+state 62
+
+    (49) suma_op -> MINUS .
+
+    LPAREN          reduce using rule 49 (suma_op -> MINUS .)
+    NOT             reduce using rule 49 (suma_op -> MINUS .)
+    INT             reduce using rule 49 (suma_op -> MINUS .)
+    REAL            reduce using rule 49 (suma_op -> MINUS .)
+    ID              reduce using rule 49 (suma_op -> MINUS .)
+
+
+state 63
+
+    (50) termino -> termino mult_op . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    termino                        shift and go to state 27
+    factor                         shift and go to state 87
+    componente                     shift and go to state 29
+    expresion                      shift and go to state 71
+    expresion_simple               shift and go to state 26
+
+state 64
+
+    (52) mult_op -> MULT .
+
+    LPAREN          reduce using rule 52 (mult_op -> MULT .)
+    NOT             reduce using rule 52 (mult_op -> MULT .)
+    INT             reduce using rule 52 (mult_op -> MULT .)
+    REAL            reduce using rule 52 (mult_op -> MULT .)
+    ID              reduce using rule 52 (mult_op -> MULT .)
+
+
+state 65
+
+    (53) mult_op -> DIV .
+
+    LPAREN          reduce using rule 53 (mult_op -> DIV .)
+    NOT             reduce using rule 53 (mult_op -> DIV .)
+    INT             reduce using rule 53 (mult_op -> DIV .)
+    REAL            reduce using rule 53 (mult_op -> DIV .)
+    ID              reduce using rule 53 (mult_op -> DIV .)
+
+
+state 66
+
+    (54) mult_op -> MOD .
+
+    LPAREN          reduce using rule 54 (mult_op -> MOD .)
+    NOT             reduce using rule 54 (mult_op -> MOD .)
+    INT             reduce using rule 54 (mult_op -> MOD .)
+    REAL            reduce using rule 54 (mult_op -> MOD .)
+    ID              reduce using rule 54 (mult_op -> MOD .)
+
+
+state 67
+
+    (55) factor -> componente POW . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    componente                     shift and go to state 88
+    expresion                      shift and go to state 71
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+
+state 68
+
+    (57) componente -> LPAREN expresion . RPAREN
+    (60) componente -> expresion . log_op expresion
+    (61) log_op -> . AND
+    (62) log_op -> . OR
+
+    RPAREN          shift and go to state 89
+    AND             shift and go to state 45
+    OR              shift and go to state 46
+
+    log_op                         shift and go to state 44
+
+state 69
+
+    (58) componente -> LPAREN error . RPAREN
+
+    RPAREN          shift and go to state 90
+
+
+state 70
+
+    (59) componente -> NOT componente .
+    (55) factor -> componente . POW componente
+    (56) factor -> componente .
+
+  ! reduce/reduce conflict for MULT resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for DIV resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for MOD resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for LT resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for LTE resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for GT resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for GTE resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for EQ resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for NE resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for PLUS resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for MINUS resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for AND resolved using rule 56 (factor -> componente .)
+  ! reduce/reduce conflict for OR resolved using rule 56 (factor -> componente .)
+    SEMI            reduce using rule 59 (componente -> NOT componente .)
+    THEN            reduce using rule 59 (componente -> NOT componente .)
+    error           reduce using rule 59 (componente -> NOT componente .)
+    INT_DECL        reduce using rule 59 (componente -> NOT componente .)
+    FLOAT_DECL      reduce using rule 59 (componente -> NOT componente .)
+    ID              reduce using rule 59 (componente -> NOT componente .)
+    IF              reduce using rule 59 (componente -> NOT componente .)
+    WHILE           reduce using rule 59 (componente -> NOT componente .)
+    DO              reduce using rule 59 (componente -> NOT componente .)
+    CIN             reduce using rule 59 (componente -> NOT componente .)
+    COUT            reduce using rule 59 (componente -> NOT componente .)
+    LPAREN          reduce using rule 59 (componente -> NOT componente .)
+    NOT             reduce using rule 59 (componente -> NOT componente .)
+    INT             reduce using rule 59 (componente -> NOT componente .)
+    REAL            reduce using rule 59 (componente -> NOT componente .)
+    RPAREN          reduce using rule 59 (componente -> NOT componente .)
+    $end            reduce using rule 59 (componente -> NOT componente .)
+    UNTIL           reduce using rule 59 (componente -> NOT componente .)
+    RBRACE          reduce using rule 59 (componente -> NOT componente .)
+    END             reduce using rule 59 (componente -> NOT componente .)
+    ELSE            reduce using rule 59 (componente -> NOT componente .)
+    POW             shift and go to state 67
+    MULT            reduce using rule 56 (factor -> componente .)
+    DIV             reduce using rule 56 (factor -> componente .)
+    MOD             reduce using rule 56 (factor -> componente .)
+    LT              reduce using rule 56 (factor -> componente .)
+    LTE             reduce using rule 56 (factor -> componente .)
+    GT              reduce using rule 56 (factor -> componente .)
+    GTE             reduce using rule 56 (factor -> componente .)
+    EQ              reduce using rule 56 (factor -> componente .)
+    NE              reduce using rule 56 (factor -> componente .)
+    PLUS            reduce using rule 56 (factor -> componente .)
+    MINUS           reduce using rule 56 (factor -> componente .)
+    AND             reduce using rule 56 (factor -> componente .)
+    OR              reduce using rule 56 (factor -> componente .)
+
+  ! POW             [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! MULT            [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! DIV             [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! MOD             [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! LT              [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! LTE             [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! GT              [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! GTE             [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! EQ              [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! NE              [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! PLUS            [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! MINUS           [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! AND             [ reduce using rule 59 (componente -> NOT componente .) ]
+  ! OR              [ reduce using rule 59 (componente -> NOT componente .) ]
+
+
+state 71
+
+    (60) componente -> expresion . log_op expresion
+    (61) log_op -> . AND
+    (62) log_op -> . OR
+
+    AND             shift and go to state 45
+    OR              shift and go to state 46
+
+    log_op                         shift and go to state 44
+
+state 72
+
+    (1) programa -> MAIN LBRACE lista_declaracion . RBRACE
+    (3) lista_declaracion -> lista_declaracion . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    RBRACE          shift and go to state 91
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    declaracion                    shift and go to state 35
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion                      shift and go to state 20
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 73
+
+    (7) declaracion_variable -> tipo lista_ids SEMI .
+
+    error           reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    INT_DECL        reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    FLOAT_DECL      reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    ID              reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    IF              reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    WHILE           reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    DO              reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    CIN             reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    COUT            reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    LPAREN          reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    NOT             reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    INT             reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    REAL            reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    $end            reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    UNTIL           reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    RBRACE          reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    END             reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+    ELSE            reduce using rule 7 (declaracion_variable -> tipo lista_ids SEMI .)
+
+
+state 74
+
+    (10) lista_ids -> ID COMMA . lista_ids
+    (10) lista_ids -> . ID COMMA lista_ids
+    (11) lista_ids -> . ID
+
+    ID              shift and go to state 37
+
+    lista_ids                      shift and go to state 92
+
+state 75
+
+    (23) asignacion -> ID ASSIGN expresion . SEMI
+    (60) componente -> expresion . log_op expresion
+    (61) log_op -> . AND
+    (62) log_op -> . OR
+
+    SEMI            shift and go to state 93
+    AND             shift and go to state 45
+    OR              shift and go to state 46
+
+    log_op                         shift and go to state 44
+
+state 76
+
+    (36) inc_dec -> ID INC SEMI .
+
+    error           reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    INT_DECL        reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    FLOAT_DECL      reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    ID              reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    IF              reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    WHILE           reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    DO              reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    CIN             reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    COUT            reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    LPAREN          reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    NOT             reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    INT             reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    REAL            reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    $end            reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    UNTIL           reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    RBRACE          reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    END             reduce using rule 36 (inc_dec -> ID INC SEMI .)
+    ELSE            reduce using rule 36 (inc_dec -> ID INC SEMI .)
+
+
+state 77
+
+    (37) inc_dec -> ID DEC SEMI .
+
+    error           reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    INT_DECL        reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    FLOAT_DECL      reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    ID              reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    IF              reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    WHILE           reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    DO              reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    CIN             reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    COUT            reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    LPAREN          reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    NOT             reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    INT             reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    REAL            reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    $end            reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    UNTIL           reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    RBRACE          reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    END             reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+    ELSE            reduce using rule 37 (inc_dec -> ID DEC SEMI .)
+
+
+state 78
+
+    (60) componente -> expresion log_op expresion .
+    (60) componente -> expresion . log_op expresion
+    (61) log_op -> . AND
+    (62) log_op -> . OR
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    POW             reduce using rule 60 (componente -> expresion log_op expresion .)
+    MULT            reduce using rule 60 (componente -> expresion log_op expresion .)
+    DIV             reduce using rule 60 (componente -> expresion log_op expresion .)
+    MOD             reduce using rule 60 (componente -> expresion log_op expresion .)
+    LT              reduce using rule 60 (componente -> expresion log_op expresion .)
+    LTE             reduce using rule 60 (componente -> expresion log_op expresion .)
+    GT              reduce using rule 60 (componente -> expresion log_op expresion .)
+    GTE             reduce using rule 60 (componente -> expresion log_op expresion .)
+    EQ              reduce using rule 60 (componente -> expresion log_op expresion .)
+    NE              reduce using rule 60 (componente -> expresion log_op expresion .)
+    PLUS            reduce using rule 60 (componente -> expresion log_op expresion .)
+    MINUS           reduce using rule 60 (componente -> expresion log_op expresion .)
+    SEMI            reduce using rule 60 (componente -> expresion log_op expresion .)
+    THEN            reduce using rule 60 (componente -> expresion log_op expresion .)
+    error           reduce using rule 60 (componente -> expresion log_op expresion .)
+    INT_DECL        reduce using rule 60 (componente -> expresion log_op expresion .)
+    FLOAT_DECL      reduce using rule 60 (componente -> expresion log_op expresion .)
+    ID              reduce using rule 60 (componente -> expresion log_op expresion .)
+    IF              reduce using rule 60 (componente -> expresion log_op expresion .)
+    WHILE           reduce using rule 60 (componente -> expresion log_op expresion .)
+    DO              reduce using rule 60 (componente -> expresion log_op expresion .)
+    CIN             reduce using rule 60 (componente -> expresion log_op expresion .)
+    COUT            reduce using rule 60 (componente -> expresion log_op expresion .)
+    LPAREN          reduce using rule 60 (componente -> expresion log_op expresion .)
+    NOT             reduce using rule 60 (componente -> expresion log_op expresion .)
+    INT             reduce using rule 60 (componente -> expresion log_op expresion .)
+    REAL            reduce using rule 60 (componente -> expresion log_op expresion .)
+    RPAREN          reduce using rule 60 (componente -> expresion log_op expresion .)
+    $end            reduce using rule 60 (componente -> expresion log_op expresion .)
+    UNTIL           reduce using rule 60 (componente -> expresion log_op expresion .)
+    RBRACE          reduce using rule 60 (componente -> expresion log_op expresion .)
+    END             reduce using rule 60 (componente -> expresion log_op expresion .)
+    ELSE            reduce using rule 60 (componente -> expresion log_op expresion .)
+    AND             shift and go to state 45
+    OR              shift and go to state 46
+
+  ! AND             [ reduce using rule 60 (componente -> expresion log_op expresion .) ]
+  ! OR              [ reduce using rule 60 (componente -> expresion log_op expresion .) ]
+
+    log_op                         shift and go to state 44
+
+state 79
+
+    (24) seleccion -> IF expresion THEN . lista_declaracion END SEMI
+    (25) seleccion -> IF expresion THEN . lista_declaracion END
+    (26) seleccion -> IF expresion THEN . lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> IF expresion THEN . lista_declaracion ELSE lista_declaracion END
+    (3) lista_declaracion -> . lista_declaracion declaracion
+    (4) lista_declaracion -> . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    expresion                      shift and go to state 20
+    lista_declaracion              shift and go to state 94
+    declaracion                    shift and go to state 4
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 80
+
+    (28) iteracion -> WHILE expresion lista_declaracion . END SEMI
+    (29) iteracion -> WHILE expresion lista_declaracion . END
+    (3) lista_declaracion -> lista_declaracion . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    END             shift and go to state 95
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    expresion                      shift and go to state 20
+    declaracion                    shift and go to state 35
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 81
+
+    (30) repeticion -> DO lista_declaracion WHILE . expresion SEMI
+    (31) repeticion -> DO lista_declaracion WHILE . expresion
+    (28) iteracion -> WHILE . expresion lista_declaracion END SEMI
+    (29) iteracion -> WHILE . expresion lista_declaracion END
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    expresion                      shift and go to state 96
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 82
+
+    (32) repeticion -> DO lista_declaracion UNTIL . expresion SEMI
+    (33) repeticion -> DO lista_declaracion UNTIL . expresion
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+    ID              shift and go to state 48
+
+    expresion                      shift and go to state 97
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 83
+
+    (34) sent_in -> CIN ID SEMI .
+
+    error           reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    INT_DECL        reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    FLOAT_DECL      reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    ID              reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    IF              reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    WHILE           reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    DO              reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    CIN             reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    COUT            reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    LPAREN          reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    NOT             reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    INT             reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    REAL            reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    $end            reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    UNTIL           reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    RBRACE          reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    END             reduce using rule 34 (sent_in -> CIN ID SEMI .)
+    ELSE            reduce using rule 34 (sent_in -> CIN ID SEMI .)
+
+
+state 84
+
+    (35) sent_out -> COUT expresion SEMI .
+
+    error           reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    INT_DECL        reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    FLOAT_DECL      reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    ID              reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    IF              reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    WHILE           reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    DO              reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    CIN             reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    COUT            reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    LPAREN          reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    NOT             reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    INT             reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    REAL            reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    $end            reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    UNTIL           reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    RBRACE          reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    END             reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+    ELSE            reduce using rule 35 (sent_out -> COUT expresion SEMI .)
+
+
+state 85
+
+    (38) expresion -> expresion_simple rel_op expresion_simple .
+    (46) expresion_simple -> expresion_simple . suma_op termino
+    (38) expresion -> expresion_simple . rel_op expresion_simple
+    (39) expresion -> expresion_simple .
+    (48) suma_op -> . PLUS
+    (49) suma_op -> . MINUS
+    (40) rel_op -> . LT
+    (41) rel_op -> . LTE
+    (42) rel_op -> . GT
+    (43) rel_op -> . GTE
+    (44) rel_op -> . EQ
+    (45) rel_op -> . NE
+
+  ! reduce/reduce conflict for AND resolved using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+  ! reduce/reduce conflict for OR resolved using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for LT resolved as shift
+  ! shift/reduce conflict for LTE resolved as shift
+  ! shift/reduce conflict for GT resolved as shift
+  ! shift/reduce conflict for GTE resolved as shift
+  ! shift/reduce conflict for EQ resolved as shift
+  ! shift/reduce conflict for NE resolved as shift
+    SEMI            reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    AND             reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    OR              reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    THEN            reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    error           reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    INT_DECL        reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    FLOAT_DECL      reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    ID              reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    IF              reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    WHILE           reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    DO              reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    CIN             reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    COUT            reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    LPAREN          reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    NOT             reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    INT             reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    REAL            reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    RPAREN          reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    POW             reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    MULT            reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    DIV             reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    MOD             reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    $end            reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    UNTIL           reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    RBRACE          reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    END             reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    ELSE            reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .)
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+    LT              shift and go to state 55
+    LTE             shift and go to state 56
+    GT              shift and go to state 57
+    GTE             shift and go to state 58
+    EQ              shift and go to state 59
+    NE              shift and go to state 60
+
+  ! LT              [ reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .) ]
+  ! LTE             [ reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .) ]
+  ! GT              [ reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .) ]
+  ! GTE             [ reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .) ]
+  ! EQ              [ reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .) ]
+  ! NE              [ reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .) ]
+  ! PLUS            [ reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .) ]
+  ! MINUS           [ reduce using rule 38 (expresion -> expresion_simple rel_op expresion_simple .) ]
+  ! AND             [ reduce using rule 39 (expresion -> expresion_simple .) ]
+  ! OR              [ reduce using rule 39 (expresion -> expresion_simple .) ]
+
+    rel_op                         shift and go to state 53
+    suma_op                        shift and go to state 54
+
+state 86
+
+    (46) expresion_simple -> expresion_simple suma_op termino .
+    (50) termino -> termino . mult_op factor
+    (47) expresion_simple -> termino .
+    (52) mult_op -> . MULT
+    (53) mult_op -> . DIV
+    (54) mult_op -> . MOD
+
+  ! reduce/reduce conflict for LT resolved using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+  ! reduce/reduce conflict for LTE resolved using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+  ! reduce/reduce conflict for GT resolved using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+  ! reduce/reduce conflict for GTE resolved using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+  ! reduce/reduce conflict for EQ resolved using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+  ! reduce/reduce conflict for NE resolved using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+  ! reduce/reduce conflict for PLUS resolved using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+  ! reduce/reduce conflict for MINUS resolved using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+  ! reduce/reduce conflict for AND resolved using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+  ! reduce/reduce conflict for OR resolved using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+    LT              reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    LTE             reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    GT              reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    GTE             reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    EQ              reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    NE              reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    PLUS            reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    MINUS           reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    SEMI            reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    AND             reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    OR              reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    THEN            reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    error           reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    INT_DECL        reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    FLOAT_DECL      reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    ID              reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    IF              reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    WHILE           reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    DO              reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    CIN             reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    COUT            reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    LPAREN          reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    NOT             reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    INT             reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    REAL            reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    RPAREN          reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    POW             reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    $end            reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    UNTIL           reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    RBRACE          reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    END             reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    ELSE            reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .)
+    MULT            shift and go to state 64
+    DIV             shift and go to state 65
+    MOD             shift and go to state 66
+
+  ! MULT            [ reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .) ]
+  ! DIV             [ reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .) ]
+  ! MOD             [ reduce using rule 46 (expresion_simple -> expresion_simple suma_op termino .) ]
+  ! LT              [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! LTE             [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! GT              [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! GTE             [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! EQ              [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! NE              [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! PLUS            [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! MINUS           [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! AND             [ reduce using rule 47 (expresion_simple -> termino .) ]
+  ! OR              [ reduce using rule 47 (expresion_simple -> termino .) ]
+
+    mult_op                        shift and go to state 63
+
+state 87
+
+    (50) termino -> termino mult_op factor .
+    (51) termino -> factor .
+
+  ! reduce/reduce conflict for MULT resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for DIV resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for MOD resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for LT resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for LTE resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for GT resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for GTE resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for EQ resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for NE resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for PLUS resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for MINUS resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for AND resolved using rule 50 (termino -> termino mult_op factor .)
+  ! reduce/reduce conflict for OR resolved using rule 50 (termino -> termino mult_op factor .)
+    MULT            reduce using rule 50 (termino -> termino mult_op factor .)
+    DIV             reduce using rule 50 (termino -> termino mult_op factor .)
+    MOD             reduce using rule 50 (termino -> termino mult_op factor .)
+    LT              reduce using rule 50 (termino -> termino mult_op factor .)
+    LTE             reduce using rule 50 (termino -> termino mult_op factor .)
+    GT              reduce using rule 50 (termino -> termino mult_op factor .)
+    GTE             reduce using rule 50 (termino -> termino mult_op factor .)
+    EQ              reduce using rule 50 (termino -> termino mult_op factor .)
+    NE              reduce using rule 50 (termino -> termino mult_op factor .)
+    PLUS            reduce using rule 50 (termino -> termino mult_op factor .)
+    MINUS           reduce using rule 50 (termino -> termino mult_op factor .)
+    SEMI            reduce using rule 50 (termino -> termino mult_op factor .)
+    AND             reduce using rule 50 (termino -> termino mult_op factor .)
+    OR              reduce using rule 50 (termino -> termino mult_op factor .)
+    THEN            reduce using rule 50 (termino -> termino mult_op factor .)
+    error           reduce using rule 50 (termino -> termino mult_op factor .)
+    INT_DECL        reduce using rule 50 (termino -> termino mult_op factor .)
+    FLOAT_DECL      reduce using rule 50 (termino -> termino mult_op factor .)
+    ID              reduce using rule 50 (termino -> termino mult_op factor .)
+    IF              reduce using rule 50 (termino -> termino mult_op factor .)
+    WHILE           reduce using rule 50 (termino -> termino mult_op factor .)
+    DO              reduce using rule 50 (termino -> termino mult_op factor .)
+    CIN             reduce using rule 50 (termino -> termino mult_op factor .)
+    COUT            reduce using rule 50 (termino -> termino mult_op factor .)
+    LPAREN          reduce using rule 50 (termino -> termino mult_op factor .)
+    NOT             reduce using rule 50 (termino -> termino mult_op factor .)
+    INT             reduce using rule 50 (termino -> termino mult_op factor .)
+    REAL            reduce using rule 50 (termino -> termino mult_op factor .)
+    RPAREN          reduce using rule 50 (termino -> termino mult_op factor .)
+    POW             reduce using rule 50 (termino -> termino mult_op factor .)
+    $end            reduce using rule 50 (termino -> termino mult_op factor .)
+    UNTIL           reduce using rule 50 (termino -> termino mult_op factor .)
+    RBRACE          reduce using rule 50 (termino -> termino mult_op factor .)
+    END             reduce using rule 50 (termino -> termino mult_op factor .)
+    ELSE            reduce using rule 50 (termino -> termino mult_op factor .)
+
+  ! MULT            [ reduce using rule 51 (termino -> factor .) ]
+  ! DIV             [ reduce using rule 51 (termino -> factor .) ]
+  ! MOD             [ reduce using rule 51 (termino -> factor .) ]
+  ! LT              [ reduce using rule 51 (termino -> factor .) ]
+  ! LTE             [ reduce using rule 51 (termino -> factor .) ]
+  ! GT              [ reduce using rule 51 (termino -> factor .) ]
+  ! GTE             [ reduce using rule 51 (termino -> factor .) ]
+  ! EQ              [ reduce using rule 51 (termino -> factor .) ]
+  ! NE              [ reduce using rule 51 (termino -> factor .) ]
+  ! PLUS            [ reduce using rule 51 (termino -> factor .) ]
+  ! MINUS           [ reduce using rule 51 (termino -> factor .) ]
+  ! AND             [ reduce using rule 51 (termino -> factor .) ]
+  ! OR              [ reduce using rule 51 (termino -> factor .) ]
+
+
+state 88
+
+    (55) factor -> componente POW componente .
+    (55) factor -> componente . POW componente
+    (56) factor -> componente .
+
+  ! reduce/reduce conflict for MULT resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for DIV resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for MOD resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for LT resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for LTE resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for GT resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for GTE resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for EQ resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for NE resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for PLUS resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for MINUS resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for AND resolved using rule 55 (factor -> componente POW componente .)
+  ! reduce/reduce conflict for OR resolved using rule 55 (factor -> componente POW componente .)
+    MULT            reduce using rule 55 (factor -> componente POW componente .)
+    DIV             reduce using rule 55 (factor -> componente POW componente .)
+    MOD             reduce using rule 55 (factor -> componente POW componente .)
+    LT              reduce using rule 55 (factor -> componente POW componente .)
+    LTE             reduce using rule 55 (factor -> componente POW componente .)
+    GT              reduce using rule 55 (factor -> componente POW componente .)
+    GTE             reduce using rule 55 (factor -> componente POW componente .)
+    EQ              reduce using rule 55 (factor -> componente POW componente .)
+    NE              reduce using rule 55 (factor -> componente POW componente .)
+    PLUS            reduce using rule 55 (factor -> componente POW componente .)
+    MINUS           reduce using rule 55 (factor -> componente POW componente .)
+    SEMI            reduce using rule 55 (factor -> componente POW componente .)
+    AND             reduce using rule 55 (factor -> componente POW componente .)
+    OR              reduce using rule 55 (factor -> componente POW componente .)
+    THEN            reduce using rule 55 (factor -> componente POW componente .)
+    error           reduce using rule 55 (factor -> componente POW componente .)
+    INT_DECL        reduce using rule 55 (factor -> componente POW componente .)
+    FLOAT_DECL      reduce using rule 55 (factor -> componente POW componente .)
+    ID              reduce using rule 55 (factor -> componente POW componente .)
+    IF              reduce using rule 55 (factor -> componente POW componente .)
+    WHILE           reduce using rule 55 (factor -> componente POW componente .)
+    DO              reduce using rule 55 (factor -> componente POW componente .)
+    CIN             reduce using rule 55 (factor -> componente POW componente .)
+    COUT            reduce using rule 55 (factor -> componente POW componente .)
+    LPAREN          reduce using rule 55 (factor -> componente POW componente .)
+    NOT             reduce using rule 55 (factor -> componente POW componente .)
+    INT             reduce using rule 55 (factor -> componente POW componente .)
+    REAL            reduce using rule 55 (factor -> componente POW componente .)
+    RPAREN          reduce using rule 55 (factor -> componente POW componente .)
+    $end            reduce using rule 55 (factor -> componente POW componente .)
+    UNTIL           reduce using rule 55 (factor -> componente POW componente .)
+    RBRACE          reduce using rule 55 (factor -> componente POW componente .)
+    END             reduce using rule 55 (factor -> componente POW componente .)
+    ELSE            reduce using rule 55 (factor -> componente POW componente .)
+    POW             shift and go to state 67
+
+  ! POW             [ reduce using rule 55 (factor -> componente POW componente .) ]
+  ! MULT            [ reduce using rule 56 (factor -> componente .) ]
+  ! DIV             [ reduce using rule 56 (factor -> componente .) ]
+  ! MOD             [ reduce using rule 56 (factor -> componente .) ]
+  ! LT              [ reduce using rule 56 (factor -> componente .) ]
+  ! LTE             [ reduce using rule 56 (factor -> componente .) ]
+  ! GT              [ reduce using rule 56 (factor -> componente .) ]
+  ! GTE             [ reduce using rule 56 (factor -> componente .) ]
+  ! EQ              [ reduce using rule 56 (factor -> componente .) ]
+  ! NE              [ reduce using rule 56 (factor -> componente .) ]
+  ! PLUS            [ reduce using rule 56 (factor -> componente .) ]
+  ! MINUS           [ reduce using rule 56 (factor -> componente .) ]
+  ! AND             [ reduce using rule 56 (factor -> componente .) ]
+  ! OR              [ reduce using rule 56 (factor -> componente .) ]
+
+
+state 89
+
+    (57) componente -> LPAREN expresion RPAREN .
+
+    POW             reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    MULT            reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    DIV             reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    MOD             reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    LT              reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    LTE             reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    GT              reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    GTE             reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    EQ              reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    NE              reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    PLUS            reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    MINUS           reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    SEMI            reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    AND             reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    OR              reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    THEN            reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    error           reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    INT_DECL        reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    FLOAT_DECL      reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    ID              reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    IF              reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    WHILE           reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    DO              reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    CIN             reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    COUT            reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    LPAREN          reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    NOT             reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    INT             reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    REAL            reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    RPAREN          reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    $end            reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    UNTIL           reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    RBRACE          reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    END             reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+    ELSE            reduce using rule 57 (componente -> LPAREN expresion RPAREN .)
+
+
+state 90
+
+    (58) componente -> LPAREN error RPAREN .
+
+    POW             reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    MULT            reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    DIV             reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    MOD             reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    LT              reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    LTE             reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    GT              reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    GTE             reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    EQ              reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    NE              reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    PLUS            reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    MINUS           reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    SEMI            reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    AND             reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    OR              reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    THEN            reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    error           reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    INT_DECL        reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    FLOAT_DECL      reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    ID              reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    IF              reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    WHILE           reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    DO              reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    CIN             reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    COUT            reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    LPAREN          reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    NOT             reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    INT             reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    REAL            reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    RPAREN          reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    $end            reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    UNTIL           reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    RBRACE          reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    END             reduce using rule 58 (componente -> LPAREN error RPAREN .)
+    ELSE            reduce using rule 58 (componente -> LPAREN error RPAREN .)
+
+
+state 91
+
+    (1) programa -> MAIN LBRACE lista_declaracion RBRACE .
+
+    $end            reduce using rule 1 (programa -> MAIN LBRACE lista_declaracion RBRACE .)
+
+
+state 92
+
+    (10) lista_ids -> ID COMMA lista_ids .
+
+    SEMI            reduce using rule 10 (lista_ids -> ID COMMA lista_ids .)
+
+
+state 93
+
+    (23) asignacion -> ID ASSIGN expresion SEMI .
+
+    error           reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    INT_DECL        reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    FLOAT_DECL      reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    ID              reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    IF              reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    WHILE           reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    DO              reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    CIN             reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    COUT            reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    LPAREN          reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    NOT             reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    INT             reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    REAL            reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    $end            reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    UNTIL           reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    RBRACE          reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    END             reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+    ELSE            reduce using rule 23 (asignacion -> ID ASSIGN expresion SEMI .)
+
+
+state 94
+
+    (24) seleccion -> IF expresion THEN lista_declaracion . END SEMI
+    (25) seleccion -> IF expresion THEN lista_declaracion . END
+    (26) seleccion -> IF expresion THEN lista_declaracion . ELSE lista_declaracion END SEMI
+    (27) seleccion -> IF expresion THEN lista_declaracion . ELSE lista_declaracion END
+    (3) lista_declaracion -> lista_declaracion . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    END             shift and go to state 98
+    ELSE            shift and go to state 99
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    expresion                      shift and go to state 20
+    declaracion                    shift and go to state 35
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 95
+
+    (28) iteracion -> WHILE expresion lista_declaracion END . SEMI
+    (29) iteracion -> WHILE expresion lista_declaracion END .
+
+    SEMI            shift and go to state 100
+    error           reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    INT_DECL        reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    FLOAT_DECL      reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    ID              reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    IF              reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    WHILE           reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    DO              reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    CIN             reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    COUT            reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    LPAREN          reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    NOT             reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    INT             reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    REAL            reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    $end            reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    UNTIL           reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    RBRACE          reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    END             reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+    ELSE            reduce using rule 29 (iteracion -> WHILE expresion lista_declaracion END .)
+
+
+state 96
+
+    (30) repeticion -> DO lista_declaracion WHILE expresion . SEMI
+    (31) repeticion -> DO lista_declaracion WHILE expresion .
+    (28) iteracion -> WHILE expresion . lista_declaracion END SEMI
+    (29) iteracion -> WHILE expresion . lista_declaracion END
+    (60) componente -> expresion . log_op expresion
+    (3) lista_declaracion -> . lista_declaracion declaracion
+    (4) lista_declaracion -> . declaracion
+    (61) log_op -> . AND
+    (62) log_op -> . OR
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+  ! shift/reduce conflict for error resolved as shift
+  ! shift/reduce conflict for INT_DECL resolved as shift
+  ! shift/reduce conflict for FLOAT_DECL resolved as shift
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for CIN resolved as shift
+  ! shift/reduce conflict for COUT resolved as shift
+  ! shift/reduce conflict for LPAREN resolved as shift
+  ! shift/reduce conflict for NOT resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for REAL resolved as shift
+    SEMI            shift and go to state 101
+    $end            reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .)
+    UNTIL           reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .)
+    RBRACE          reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .)
+    END             reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .)
+    ELSE            reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .)
+    AND             shift and go to state 45
+    OR              shift and go to state 46
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+  ! error           [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! INT_DECL        [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! FLOAT_DECL      [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! ID              [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! IF              [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! WHILE           [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! DO              [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! CIN             [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! COUT            [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! LPAREN          [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! NOT             [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! INT             [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+  ! REAL            [ reduce using rule 31 (repeticion -> DO lista_declaracion WHILE expresion .) ]
+
+    lista_declaracion              shift and go to state 80
+    expresion                      shift and go to state 20
+    log_op                         shift and go to state 44
+    declaracion                    shift and go to state 4
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 97
+
+    (32) repeticion -> DO lista_declaracion UNTIL expresion . SEMI
+    (33) repeticion -> DO lista_declaracion UNTIL expresion .
+    (60) componente -> expresion . log_op expresion
+    (61) log_op -> . AND
+    (62) log_op -> . OR
+
+    SEMI            shift and go to state 102
+    error           reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    INT_DECL        reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    FLOAT_DECL      reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    ID              reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    IF              reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    WHILE           reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    DO              reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    CIN             reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    COUT            reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    LPAREN          reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    NOT             reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    INT             reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    REAL            reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    $end            reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    UNTIL           reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    RBRACE          reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    END             reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    ELSE            reduce using rule 33 (repeticion -> DO lista_declaracion UNTIL expresion .)
+    AND             shift and go to state 45
+    OR              shift and go to state 46
+
+    log_op                         shift and go to state 44
+
+state 98
+
+    (24) seleccion -> IF expresion THEN lista_declaracion END . SEMI
+    (25) seleccion -> IF expresion THEN lista_declaracion END .
+
+    SEMI            shift and go to state 103
+    error           reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    INT_DECL        reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    FLOAT_DECL      reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    ID              reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    IF              reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    WHILE           reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    DO              reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    CIN             reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    COUT            reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    LPAREN          reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    NOT             reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    INT             reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    REAL            reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    $end            reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    UNTIL           reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    RBRACE          reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    END             reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+    ELSE            reduce using rule 25 (seleccion -> IF expresion THEN lista_declaracion END .)
+
+
+state 99
+
+    (26) seleccion -> IF expresion THEN lista_declaracion ELSE . lista_declaracion END SEMI
+    (27) seleccion -> IF expresion THEN lista_declaracion ELSE . lista_declaracion END
+    (3) lista_declaracion -> . lista_declaracion declaracion
+    (4) lista_declaracion -> . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    expresion                      shift and go to state 20
+    lista_declaracion              shift and go to state 104
+    declaracion                    shift and go to state 4
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 100
+
+    (28) iteracion -> WHILE expresion lista_declaracion END SEMI .
+
+    error           reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    INT_DECL        reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    FLOAT_DECL      reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    ID              reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    IF              reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    WHILE           reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    DO              reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    CIN             reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    COUT            reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    LPAREN          reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    NOT             reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    INT             reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    REAL            reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    $end            reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    UNTIL           reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    RBRACE          reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    END             reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+    ELSE            reduce using rule 28 (iteracion -> WHILE expresion lista_declaracion END SEMI .)
+
+
+state 101
+
+    (30) repeticion -> DO lista_declaracion WHILE expresion SEMI .
+
+    error           reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    INT_DECL        reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    FLOAT_DECL      reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    ID              reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    IF              reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    WHILE           reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    DO              reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    CIN             reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    COUT            reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    LPAREN          reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    NOT             reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    INT             reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    REAL            reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    $end            reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    UNTIL           reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    RBRACE          reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    END             reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+    ELSE            reduce using rule 30 (repeticion -> DO lista_declaracion WHILE expresion SEMI .)
+
+
+state 102
+
+    (32) repeticion -> DO lista_declaracion UNTIL expresion SEMI .
+
+    error           reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    INT_DECL        reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    FLOAT_DECL      reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    ID              reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    IF              reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    WHILE           reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    DO              reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    CIN             reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    COUT            reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    LPAREN          reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    NOT             reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    INT             reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    REAL            reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    $end            reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    UNTIL           reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    RBRACE          reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    END             reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+    ELSE            reduce using rule 32 (repeticion -> DO lista_declaracion UNTIL expresion SEMI .)
+
+
+state 103
+
+    (24) seleccion -> IF expresion THEN lista_declaracion END SEMI .
+
+    error           reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    INT_DECL        reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    FLOAT_DECL      reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    ID              reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    IF              reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    WHILE           reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    DO              reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    CIN             reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    COUT            reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    LPAREN          reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    NOT             reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    INT             reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    REAL            reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    $end            reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    UNTIL           reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    RBRACE          reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    END             reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+    ELSE            reduce using rule 24 (seleccion -> IF expresion THEN lista_declaracion END SEMI .)
+
+
+state 104
+
+    (26) seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion . END SEMI
+    (27) seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion . END
+    (3) lista_declaracion -> lista_declaracion . declaracion
+    (5) declaracion -> . declaracion_variable
+    (6) declaracion -> . sentencia
+    (7) declaracion_variable -> . tipo lista_ids SEMI
+    (12) sentencia -> . asignacion
+    (13) sentencia -> . seleccion
+    (14) sentencia -> . iteracion
+    (15) sentencia -> . repeticion
+    (16) sentencia -> . sent_in
+    (17) sentencia -> . sent_out
+    (18) sentencia -> . inc_dec
+    (19) sentencia -> . expresion_suelta
+    (20) sentencia -> . error SEMI
+    (21) sentencia -> . error RBRACE
+    (8) tipo -> . INT_DECL
+    (9) tipo -> . FLOAT_DECL
+    (23) asignacion -> . ID ASSIGN expresion SEMI
+    (24) seleccion -> . IF expresion THEN lista_declaracion END SEMI
+    (25) seleccion -> . IF expresion THEN lista_declaracion END
+    (26) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI
+    (27) seleccion -> . IF expresion THEN lista_declaracion ELSE lista_declaracion END
+    (28) iteracion -> . WHILE expresion lista_declaracion END SEMI
+    (29) iteracion -> . WHILE expresion lista_declaracion END
+    (30) repeticion -> . DO lista_declaracion WHILE expresion SEMI
+    (31) repeticion -> . DO lista_declaracion WHILE expresion
+    (32) repeticion -> . DO lista_declaracion UNTIL expresion SEMI
+    (33) repeticion -> . DO lista_declaracion UNTIL expresion
+    (34) sent_in -> . CIN ID SEMI
+    (35) sent_out -> . COUT expresion SEMI
+    (36) inc_dec -> . ID INC SEMI
+    (37) inc_dec -> . ID DEC SEMI
+    (22) expresion_suelta -> . expresion SEMI
+    (38) expresion -> . expresion_simple rel_op expresion_simple
+    (39) expresion -> . expresion_simple
+    (46) expresion_simple -> . expresion_simple suma_op termino
+    (47) expresion_simple -> . termino
+    (50) termino -> . termino mult_op factor
+    (51) termino -> . factor
+    (55) factor -> . componente POW componente
+    (56) factor -> . componente
+    (57) componente -> . LPAREN expresion RPAREN
+    (58) componente -> . LPAREN error RPAREN
+    (59) componente -> . NOT componente
+    (60) componente -> . expresion log_op expresion
+    (63) componente -> . INT
+    (64) componente -> . REAL
+    (65) componente -> . ID
+
+    END             shift and go to state 105
+    error           shift and go to state 16
+    INT_DECL        shift and go to state 17
+    FLOAT_DECL      shift and go to state 18
+    ID              shift and go to state 19
+    IF              shift and go to state 21
+    WHILE           shift and go to state 22
+    DO              shift and go to state 23
+    CIN             shift and go to state 24
+    COUT            shift and go to state 25
+    LPAREN          shift and go to state 30
+    NOT             shift and go to state 31
+    INT             shift and go to state 32
+    REAL            shift and go to state 33
+
+    expresion                      shift and go to state 20
+    declaracion                    shift and go to state 35
+    declaracion_variable           shift and go to state 5
+    sentencia                      shift and go to state 6
+    tipo                           shift and go to state 7
+    asignacion                     shift and go to state 8
+    seleccion                      shift and go to state 9
+    iteracion                      shift and go to state 10
+    repeticion                     shift and go to state 11
+    sent_in                        shift and go to state 12
+    sent_out                       shift and go to state 13
+    inc_dec                        shift and go to state 14
+    expresion_suelta               shift and go to state 15
+    expresion_simple               shift and go to state 26
+    termino                        shift and go to state 27
+    factor                         shift and go to state 28
+    componente                     shift and go to state 29
+
+state 105
+
+    (26) seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END . SEMI
+    (27) seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .
+
+    SEMI            shift and go to state 106
+    error           reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    INT_DECL        reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    FLOAT_DECL      reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    ID              reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    IF              reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    WHILE           reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    DO              reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    CIN             reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    COUT            reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    LPAREN          reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    NOT             reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    INT             reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    REAL            reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    $end            reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    UNTIL           reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    RBRACE          reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    END             reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+    ELSE            reduce using rule 27 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END .)
+
+
+state 106
+
+    (26) seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .
+
+    error           reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    INT_DECL        reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    FLOAT_DECL      reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    ID              reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    IF              reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    WHILE           reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    DO              reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    CIN             reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    COUT            reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    LPAREN          reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    NOT             reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    INT             reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    REAL            reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    $end            reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    UNTIL           reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    RBRACE          reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    END             reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+    ELSE            reduce using rule 26 (seleccion -> IF expresion THEN lista_declaracion ELSE lista_declaracion END SEMI .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for LT in state 26 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 26 resolved as shift
+WARNING: shift/reduce conflict for GT in state 26 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 26 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 26 resolved as shift
+WARNING: shift/reduce conflict for NE in state 26 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 26 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 26 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 27 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 27 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 27 resolved as shift
+WARNING: shift/reduce conflict for POW in state 29 resolved as shift
+WARNING: shift/reduce conflict for AND in state 78 resolved as shift
+WARNING: shift/reduce conflict for OR in state 78 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 85 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 85 resolved as shift
+WARNING: shift/reduce conflict for LT in state 85 resolved as shift
+WARNING: shift/reduce conflict for LTE in state 85 resolved as shift
+WARNING: shift/reduce conflict for GT in state 85 resolved as shift
+WARNING: shift/reduce conflict for GTE in state 85 resolved as shift
+WARNING: shift/reduce conflict for EQ in state 85 resolved as shift
+WARNING: shift/reduce conflict for NE in state 85 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 86 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 86 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 86 resolved as shift
+WARNING: shift/reduce conflict for error in state 96 resolved as shift
+WARNING: shift/reduce conflict for INT_DECL in state 96 resolved as shift
+WARNING: shift/reduce conflict for FLOAT_DECL in state 96 resolved as shift
+WARNING: shift/reduce conflict for ID in state 96 resolved as shift
+WARNING: shift/reduce conflict for IF in state 96 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 96 resolved as shift
+WARNING: shift/reduce conflict for DO in state 96 resolved as shift
+WARNING: shift/reduce conflict for CIN in state 96 resolved as shift
+WARNING: shift/reduce conflict for COUT in state 96 resolved as shift
+WARNING: shift/reduce conflict for LPAREN in state 96 resolved as shift
+WARNING: shift/reduce conflict for NOT in state 96 resolved as shift
+WARNING: shift/reduce conflict for INT in state 96 resolved as shift
+WARNING: shift/reduce conflict for REAL in state 96 resolved as shift
+WARNING: reduce/reduce conflict in state 70 resolved using rule (factor -> componente)
+WARNING: rejected rule (componente -> NOT componente) in state 70
+WARNING: reduce/reduce conflict in state 85 resolved using rule (expresion -> expresion_simple rel_op expresion_simple)
+WARNING: rejected rule (expresion -> expresion_simple) in state 85
+WARNING: reduce/reduce conflict in state 86 resolved using rule (expresion_simple -> expresion_simple suma_op termino)
+WARNING: rejected rule (expresion_simple -> termino) in state 86
+WARNING: reduce/reduce conflict in state 87 resolved using rule (termino -> termino mult_op factor)
+WARNING: rejected rule (termino -> factor) in state 87
+WARNING: reduce/reduce conflict in state 88 resolved using rule (factor -> componente POW componente)
+WARNING: rejected rule (factor -> componente) in state 88

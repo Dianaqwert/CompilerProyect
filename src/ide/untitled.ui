@@ -50,7 +50,7 @@
        </widget>
        <widget class="QTabWidget" name="LCHSS">
         <property name="currentIndex">
-         <number>0</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="lexico">
          <attribute name="title">
@@ -92,6 +92,11 @@
          <attribute name="title">
           <string>Hash Table</string>
          </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QTableWidget" name="tablaSimbolos"/>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="semantico">
          <attribute name="title">
@@ -161,16 +166,11 @@
         <attribute name="title">
          <string>Errores Semanticos</string>
         </attribute>
-        <widget class="QTableWidget" name="tablaErroresSemanticos">
-         <property name="geometry">
-          <rect>
-           <x>5</x>
-           <y>-19</y>
-           <width>891</width>
-           <height>291</height>
-          </rect>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QTableWidget" name="tablaErroresSemanticos"/>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="Resultados">
         <attribute name="title">
